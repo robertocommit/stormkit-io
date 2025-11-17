@@ -20,6 +20,7 @@ import TabStatusChecks from "./_components/TabStatusChecks";
 import TabAPIKey from "./_components/TabAPIKey";
 import TabMailer from "./_components/TabMailer";
 import TabAuthWall from "./_components/TabAuthWall";
+import TabMaintenanceMode from "./_components/TabMaintenanceMode/TabMaintenanceMode";
 
 interface NavItem {
   path: string;
@@ -56,6 +57,7 @@ const generateListItems = (
       { path: "#serverless", text: "Serverless functions" },
       { path: "#headers", text: "Headers" },
       { path: "#redirects", text: "Redirects" },
+      { path: "#maintenance", text: "Maintenance mode" },
       { path: "#authwall", text: "Auth wall" },
     ],
   },
@@ -103,6 +105,10 @@ export default function EnvironmentConfig() {
       case "#authwall":
         return ({ app, environment }: TabProps) => (
           <TabAuthWall app={app} environment={environment} />
+        );
+      case "#maintenance":
+        return ({ app, environment }: TabProps) => (
+          <TabMaintenanceMode app={app} environment={environment} />
         );
       case "":
       case "#general":

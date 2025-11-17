@@ -105,13 +105,13 @@ var stmt = &statement{
 		SELECT
 			d.app_id, d.deployment_id, d.env_id,
 			d.fn_loc, d.st_loc, d.api_loc, d.api_path_prefix,
-			d.manifest, d.env_updated, d.build_conf, d.percentage,
-			coalesce(d.cert_value, '') as cert_value,
-			coalesce(d.cert_key, '') as cert_key,
-			d.domain_id, d.auth_wall_conf,
-			(SELECT json_data FROM snippets) as snippets,
-			d.display_name, d.env_name, d.subscription_tier, d.billing_user_id
-		FROM deployment d
+                        d.manifest, d.env_updated, d.build_conf, d.percentage,
+                        coalesce(d.cert_value, '') as cert_value,
+                        coalesce(d.cert_key, '') as cert_key,
+                        d.domain_id, d.maintenance_mode, d.auth_wall_conf,
+                        (SELECT json_data FROM snippets) as snippets,
+                        d.display_name, d.env_name, d.subscription_tier, d.billing_user_id
+                FROM deployment d
 	`,
 }
 
@@ -233,6 +233,7 @@ func rowsToConfigs(rows *sql.Rows, err error) ([]*Config, error) {
 		var displayName string
 		var envName string
 		var tier string
+		var maintenanceMode bool
 		authwall := authwall.Config{}
 		cnf := &Config{}
 		err := rows.Scan(
@@ -240,7 +241,7 @@ func rowsToConfigs(rows *sql.Rows, err error) ([]*Config, error) {
 			&cnf.FunctionLocation, &cnf.StorageLocation,
 			&cnf.APILocation, &cnf.APIPathPrefix,
 			&buildManifest, &cnf.UpdatedAt, &buildConf,
-			&cnf.Percentage, &certVal, &certKey, &cnf.DomainID,
+			&cnf.Percentage, &certVal, &certKey, &cnf.DomainID, &maintenanceMode,
 			&authwall, &cnf.Snippets, &displayName, &envName, &tier,
 			&cnf.BillingUserID,
 		)
@@ -311,6 +312,8 @@ func rowsToConfigs(rows *sql.Rows, err error) ([]*Config, error) {
 			cnf.Redirects = append(cnf.Redirects, buildManifest.Redirects...)
 			cnf.StaticFiles = staticFiles
 		}
+
+		cnf.Maintenance = maintenanceMode
 
 		if authwall.Status != "" {
 			cnf.AuthWall = authwall.Status

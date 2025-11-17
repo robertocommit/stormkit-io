@@ -35,5 +35,6 @@ type Config struct {
 	DomainID         types.ID             `json:"domainId,omitempty"`
 	StaticFiles      StaticFileConfig     `json:"staticFiles,omitempty"`
 	AuthWall         string               `json:"authWall,omitempty"`     // Whether to display an auth wall or not. Possible values: dev | all
+	Maintenance      bool                 `json:"maintenance,omitempty"`  // Whether the environment is in maintenance mode.
 	IsEnterprise     bool                 `json:"isEnterprise,omitempty"` // Whether the app is running in enterprise mode
 }

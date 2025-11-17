@@ -824,6 +824,34 @@ func (s *HandlerForwardSuite) Test_ImageOptimization_PreviouslyCached() {
 	s.Equal([]byte("Image Content"), res.Data.([]byte))
 }
 
+func (s *HandlerForwardSuite) Test_MaintenanceMode_ReturnsMaintenancePage() {
+	host := &hosting.Host{
+		Name: "www.stormkit.io",
+		Config: &appconf.Config{
+			Maintenance: true,
+		},
+	}
+
+	req := s.newRequest(host, "/")
+	res := hosting.HandlerForward(req)
+
+	s.Equal(http.StatusServiceUnavailable, res.Status)
+	s.Equal("text/html; charset=utf-8", res.Headers.Get("Content-Type"))
+	s.Contains(string(res.Data.([]byte)), "We'll be back soon.")
+}
+
+func (s *HandlerForwardSuite) Test_MaintenanceMode_AllowsTrafficWhenDisabled() {
+	host := &hosting.Host{
+		Name:   "www.stormkit.io",
+		Config: &appconf.Config{},
+	}
+
+	req := s.newRequest(host, "/")
+	res := hosting.HandlerForward(req)
+
+	s.NotEqual(http.StatusServiceUnavailable, res.Status)
+}
+
 func (s *HandlerForwardSuite) Test_AuthWall_LoginPage() {
 	admin.MustConfig().SetURL("http://stormkit:8888")
 
