@@ -1,4 +1,4 @@
-import { FormEventHandler, useState } from "react";
+import { FormEventHandler, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
@@ -25,11 +25,17 @@ export default function TabMaintenanceMode({ app, environment: env }: Props) {
   const [formError, setFormError] = useState<string>();
   const [sendLoading, setSendLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<string>();
-  const { loading, error, maintenance } = useFetchMaintenanceConfig({
-    appId: app.id,
-    envId: env.id!,
-    refreshToken,
-  });
+  const [maintenance, setMaintenance] = useState<boolean>(false);
+  const { loading, error, maintenance: fetchedMaintenance } =
+    useFetchMaintenanceConfig({
+      appId: app.id,
+      envId: env.id!,
+      refreshToken,
+    });
+
+  useEffect(() => {
+    setMaintenance(Boolean(fetchedMaintenance));
+  }, [fetchedMaintenance]);
 
   const submitHandler: FormEventHandler = e => {
     e.preventDefault();
@@ -46,17 +52,26 @@ export default function TabMaintenanceMode({ app, environment: env }: Props) {
       maintenance: isMaintenanceEnabled,
     })
       .then(() => {
+        setMaintenance(isMaintenanceEnabled);
         setRefreshToken(Date.now());
         setSuccess("Maintenance mode updated successfully.");
         setFormError(undefined);
       })
       .catch(async e => {
-        const data = await e.json();
+        let message =
+          "Something went wrong while updating the maintenance configuration.";
 
-        setFormError(
-          data.error ||
-            "Something went wrong while updating the maintenance configuration."
-        );
+        if (e instanceof Response) {
+          try {
+            const data = await e.json();
+            message = data.error || message;
+          } catch {
+            const text = await e.text().catch(() => "");
+            message = text || message;
+          }
+        }
+
+        setFormError(message);
       })
       .finally(() => {
         setSendLoading(false);
@@ -96,7 +111,8 @@ export default function TabMaintenanceMode({ app, environment: env }: Props) {
           labelId="app-runtime-maintenance"
           variant="filled"
           name="maintenance"
-          defaultValue={maintenance ? "on" : "off"}
+          value={maintenance ? "on" : "off"}
+          onChange={event => setMaintenance(event.target.value === "on")}
           sx={{ minWidth: 250 }}
         >
           <MenuItem value={"off"}>Maintenance mode is disabled</MenuItem>
