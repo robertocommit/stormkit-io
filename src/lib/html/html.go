@@ -206,10 +206,10 @@ var Templates = map[string]string{
 	</footer>`,
 
 	"login": `
-	<form method="POST" action="{{ .api_host }}/auth-wall/login" class="container">
-		<input type="hidden" name="token" value="{{ .token }}" />
-		<input type="hidden" name="envId" value="{{ .env_id }}" />
-		<h1>{{ .title }}</h1>
+        <form method="POST" action="{{ .api_host }}/auth-wall/login" class="container">
+                <input type="hidden" name="token" value="{{ .token }}" />
+                <input type="hidden" name="envId" value="{{ .env_id }}" />
+                <h1>{{ .title }}</h1>
 		<h3>Login with your credentials to access the deployment</h3>
 		<div>
 			<div class="form-group">
@@ -227,15 +227,22 @@ var Templates = map[string]string{
 			<div class="form-group">Token generation failed. Please retry and contact us if the problem persists.</div>
 			{{ end }}
 			{{ if .error }}
-			<div class="form-group error">{{ .error }}</div>
-			{{ end }}
-		</div>
-	</form>`,
+                        <div class="form-group error">{{ .error }}</div>
+                        {{ end }}
+                </div>
+        </form>`,
+
+	"maintenance": `
+        <div class="container">
+                <h1>We'll be back soon.</h1>
+                <h3>{{ .app_name }} is currently undergoing maintenance.</h3>
+                <p>Thank you for your patience while we finish up a few things.</p>
+        </div>`,
 
 	"404": `
-	<div class="container">
-		<h1>4 oh 4</h1>
-		<h3>Whoops! We've got nothing under this link.<br/>This usually occurs when the deployment is removed, or it never existed before.</h3>
+        <div class="container">
+                <h1>4 oh 4</h1>
+                <h3>Whoops! We've got nothing under this link.<br/>This usually occurs when the deployment is removed, or it never existed before.</h3>
 		<footer>
 			<a href="{{ .app_url }}" class="secondary">Click here</a> to go back to the application.
 		</footer>

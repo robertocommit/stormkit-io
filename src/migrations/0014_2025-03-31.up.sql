@@ -352,6 +352,9 @@ CREATE UNIQUE INDEX IF NOT EXISTS auth_wall_env_id_login_email ON skitapi.auth_w
 
 ALTER TABLE skitapi.apps_build_conf ADD COLUMN IF NOT EXISTS auth_wall_conf jsonb;
 
+ALTER TABLE skitapi.apps_build_conf
+    ADD COLUMN IF NOT EXISTS maintenance_mode boolean DEFAULT false NOT NULL;
+
 DO $$
 BEGIN
   BEGIN
