@@ -13,6 +13,7 @@ import (
 	"github.com/stormkit-io/stormkit-io/src/lib/config"
 	"github.com/stormkit-io/stormkit-io/src/lib/rediscache"
 	"github.com/stormkit-io/stormkit-io/src/lib/slog"
+	"github.com/stormkit-io/stormkit-io/src/lib/utils"
 	"github.com/stormkit-io/stormkit-io/src/lib/utils/sys"
 	"go.uber.org/zap"
 )
@@ -97,7 +98,7 @@ func (m *Mise) InstallMise(ctx context.Context) error {
 			`curl https://mise.run | sh && echo 'eval "$(~/.local/bin/mise activate bash)"' >> ~/.bashrc`,
 		},
 		Env: []string{
-			"MISE_VERSION=v2025.10.1",
+			"MISE_VERSION=" + utils.GetString(os.Getenv("MISE_VERSION"), "v2025.12.2"),
 			"PATH=" + os.Getenv("PATH"),
 			"HOME=" + os.Getenv("HOME"),
 		},
