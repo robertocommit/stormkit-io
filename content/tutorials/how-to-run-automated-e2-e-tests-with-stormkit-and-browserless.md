@@ -178,7 +178,7 @@ Now we need to configure Stormkit to use the Browserless endpoint for our tests.
 
 <div class="img-wrapper">
 
-![stormkit.116-203-180-254.sslip.io_browserless.png](/tutorials/how-to-run-automated-e2-e-tests-with-stormkit-and-browserless/import-screen.png)
+![stormkit.116-203-180-254.sslip.io_browserless.png](/assets/tutorials/how-to-run-automated-e2-e-tests-with-stormkit-and-browserless/import-screen.png)
 
 </div>
 
@@ -193,7 +193,7 @@ Now we need to configure Stormkit to use the Browserless endpoint for our tests.
 
 <div class="img-wrapper">
 
-![stormkit.116-203-180-254.sslip.io_apps_7_environments_7.png](/tutorials/how-to-run-automated-e2-e-tests-with-stormkit-and-browserless/status-checks.png)
+![stormkit.116-203-180-254.sslip.io_apps_7_environments_7.png](/assets/tutorials/how-to-run-automated-e2-e-tests-with-stormkit-and-browserless/status-checks.png)
 
 </div>
 
@@ -201,7 +201,7 @@ Now we need to configure Stormkit to use the Browserless endpoint for our tests.
 
 <div class="img-wrapper">
 
-![stormkit.116-203-180-254.sslip.io_apps_7_environments_7_deployments_110.png](/tutorials/how-to-run-automated-e2-e-tests-with-stormkit-and-browserless/status-checks-ran.png)
+![stormkit.116-203-180-254.sslip.io_apps_7_environments_7_deployments_110.png](/assets/tutorials/how-to-run-automated-e2-e-tests-with-stormkit-and-browserless/status-checks-ran.png)
 
 </div>
 

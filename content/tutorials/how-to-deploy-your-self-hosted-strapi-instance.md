@@ -9,7 +9,7 @@ Deploy a Strapi CMS instance on your server with this step-by-step guide.
 
 <div class="img-wrapper">
 
-![Strapi Login](/tutorials/how-to-deploy-your-self-hosted-strapi-instance/strapi-login.png)
+![Strapi Login](/assets/tutorials/how-to-deploy-your-self-hosted-strapi-instance/strapi-login.png)
 
 </div>
 
@@ -149,7 +149,7 @@ Next, we need to setup the environment variables.
 
 <div class="img-wrapper"> 
   
-  ![Stormkit-Deployment-Config](/tutorials/how-to-deploy-your-self-hosted-strapi-instance/stormkit-deployment-configuration.png)
+  ![Stormkit-Deployment-Config](/assets/tutorials/how-to-deploy-your-self-hosted-strapi-instance/stormkit-deployment-configuration.png)
   
 </div>
 

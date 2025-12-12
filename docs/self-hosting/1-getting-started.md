@@ -1,5 +1,5 @@
 ---
-title: 'Self-Hosting with Stormkit: Deploy Web Apps with Full Control'
+title: "Self-Hosting with Stormkit: Deploy Web Apps with Full Control"
 description: Discover Stormkit, the self-hosted alternative to Vercel and Netlify. Deploy your frontend apps with full control over your infrastructure, offering powerful features like multiple environments, deployment previews, snippet injections, status checks and analytics.
 ---
 
@@ -53,6 +53,6 @@ By default, Stormkit runs deployments on the same machine where the `Workerserve
 <section>
 
 - [Install Stormkit on Ubuntu Server and deploy a Next.js app](https://youtu.be/bLw0r3VKLrg)
-- [How to Self-Host Stormkit on Hetzner Cloud](https://www.stormkit.io/tutorials/how-to-self-host-stormkit-on-hetzner-cloud)
+- [How to Self-Host Stormkit on Hetzner Cloud](/tutorials/how-to-self-host-stormkit-on-hetzner-cloud)
 
 </section>

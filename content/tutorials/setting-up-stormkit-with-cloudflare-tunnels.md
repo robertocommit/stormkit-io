@@ -64,7 +64,7 @@ docker compose down hosting workerserver && docker compose up -d hosting workers
 
 <div class="img-wrapper">
 
-![CloudFlare Tunnel Dashboard](/tutorials/setting-up-stormkit-with-cloudflare-tunnels/cloudflare-tunnel-dashboard.png)
+![CloudFlare Tunnel Dashboard](/assets/tutorials/setting-up-stormkit-with-cloudflare-tunnels/cloudflare-tunnel-dashboard.png)
 
 </div>
 
@@ -79,7 +79,7 @@ You should see an output like this:
 
 <div class="img-wrapper">
 
-![CloudFlare Tunnel Output](/tutorials/setting-up-stormkit-with-cloudflare-tunnels/cloudflare-tunnel-output.png)
+![CloudFlare Tunnel Output](/assets/tutorials/setting-up-stormkit-with-cloudflare-tunnels/cloudflare-tunnel-output.png)
 
 </div>
 
@@ -104,7 +104,7 @@ In the **Public Hostnames** section of your tunnel:
 
 <div class="img-wrapper">
 
-![CloudFlare Public Hostnames](/tutorials/setting-up-stormkit-with-cloudflare-tunnels/cloudflare-public-hostnames.png)
+![CloudFlare Public Hostnames](/assets/tutorials/setting-up-stormkit-with-cloudflare-tunnels/cloudflare-public-hostnames.png)
 
 </div>
 
@@ -120,7 +120,7 @@ In the **Public Hostnames** section of your tunnel:
 
 <div class="img-wrapper">
 
-![CloudFlare SSL/TLS Config](/tutorials/setting-up-stormkit-with-cloudflare-tunnels/cloudflare-ssl-setup.png)
+![CloudFlare SSL/TLS Config](/assets/tutorials/setting-up-stormkit-with-cloudflare-tunnels/cloudflare-ssl-setup.png)
 
 </div>
 

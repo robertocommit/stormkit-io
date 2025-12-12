@@ -9,14 +9,14 @@ Deploy a Remix App on your server with this step-by-step guide.
 
 <div class="img-wrapper">
 
-![Remix App](/tutorials/how-to-deploy-your-self-hosted-remix-app/remix-app.png)
+![Remix App](/assets/tutorials/how-to-deploy-your-self-hosted-remix-app/remix-app.png)
 
 </div>
 
 ## Prerequisites
 
 - A GitHub account
-- A [self-hosted Stormkit instance](https://www.stormkit.io/tutorials/how-to-self-host-stormkit-on-hetzner-cloud) for deployment
+- A [self-hosted Stormkit instance](/tutorials/how-to-self-host-stormkit-on-hetzner-cloud) for deployment
 - Basic knowledge of Git and terminal commands
 
 ## 1. Create a Remix Project
@@ -68,6 +68,6 @@ Once you went through all the steps mentioned above, go ahead and `Deploy` your 
 
 <div class="img-wrapper">
 
-![Stormkit Remix Deployment](/tutorials/how-to-deploy-your-self-hosted-remix-app/deployment-logs.png)
+![Stormkit Remix Deployment](/assets/tutorials/how-to-deploy-your-self-hosted-remix-app/deployment-logs.png)
 
 </div>
