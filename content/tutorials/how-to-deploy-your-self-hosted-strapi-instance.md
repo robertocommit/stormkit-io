@@ -9,7 +9,7 @@ Deploy a Strapi CMS instance on your server with this step-by-step guide.
 
 <div class="img-wrapper">
 
-![Strapi Login](/assets/tutorials/how-to-deploy-your-self-hosted-strapi-instance/strapi-login.png)
+![Strapi Login](/tutorials/how-to-deploy-your-self-hosted-strapi-instance/strapi-login.png)
 
 </div>
 
@@ -18,7 +18,7 @@ Deploy a Strapi CMS instance on your server with this step-by-step guide.
 Before diving in, review [Strapi's documentation](https://docs.strapi.io/cms/deployment) for hardware requirements. Stormkit suggests at least 4GB RAM, 2 vCPUs, and 20GB storage for optimal performance.
 
 - A GitHub account
-- A [self-hosted Stormkit instance](https://www.stormkit.io/tutorials/how-to-self-host-stormkit-on-hetzner-cloud) for deployment
+- A [self-hosted Stormkit instance](/tutorials/how-to-self-host-stormkit-on-hetzner-cloud) for deployment
 - Basic knowledge of Git and terminal commands
 
 ## 1. Create a Strapi Project
@@ -149,7 +149,7 @@ Next, we need to setup the environment variables.
 
 <div class="img-wrapper"> 
   
-  ![Stormkit-Deployment-Config](/assets/tutorials/how-to-deploy-your-self-hosted-strapi-instance/stormkit-deployment-configuration.png)
+  ![Stormkit-Deployment-Config](/tutorials/how-to-deploy-your-self-hosted-strapi-instance/stormkit-deployment-configuration.png)
   
 </div>
 

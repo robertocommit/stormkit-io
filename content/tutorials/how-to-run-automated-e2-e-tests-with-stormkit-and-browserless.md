@@ -84,53 +84,53 @@ mkdir tests
 Create a basic test file `tests/app.spec.ts`:
 
 ```javascript
-import { chromium } from 'playwright-core'
+import { chromium } from "playwright-core";
 
 const test = async () => {
   // Connect to the remote browser via Browserless
   const browser = await chromium.connect(
     process.env.PLAYWRIGHT_WS_ENDPOINT ||
-      'ws://localhost:3000/chromium/playwright'
-  )
+      "ws://localhost:3000/chromium/playwright"
+  );
 
-  const context = await browser.newContext()
-  const page = await context.newPage()
-  const host = process.env.SK_DEPLOYMENT_URL || 'http://localhost:5173'
-  const url = `${host}/ssr`
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  const host = process.env.SK_DEPLOYMENT_URL || "http://localhost:5173";
+  const url = `${host}/ssr`;
 
   try {
     // Navigate to your application
-    const response = await page.goto(url)
+    const response = await page.goto(url);
 
     // Test your application
-    await page.waitForSelector('.list')
-    const title = await page.textContent('h1')
-    console.log('Page title:', title)
+    await page.waitForSelector(".list");
+    const title = await page.textContent("h1");
+    console.log("Page title:", title);
 
     if (!response) {
-      throw new Error('Failed to fetch API health endpoint')
+      throw new Error("Failed to fetch API health endpoint");
     }
 
-    console.log('API health status:', response.status())
-    console.log('✅ All tests passed!')
+    console.log("API health status:", response.status());
+    console.log("✅ All tests passed!");
   } catch (error) {
-    console.error('❌ Test failed:', error.message)
-    throw error
+    console.error("❌ Test failed:", error.message);
+    throw error;
   } finally {
-    await context.close()
-    await browser.close()
+    await context.close();
+    await browser.close();
   }
-}
+};
 
 // Run the test
-;(async () => {
+(async () => {
   try {
-    await test()
+    await test();
   } catch (e) {
-    console.error(e)
-    process.exit(1) // This is important as it tells Stormkit that the process failed
+    console.error(e);
+    process.exit(1); // This is important as it tells Stormkit that the process failed
   }
-})()
+})();
 ```
 
 ### Add Test Script to Package.json
@@ -178,7 +178,7 @@ Now we need to configure Stormkit to use the Browserless endpoint for our tests.
 
 <div class="img-wrapper">
 
-![stormkit.116-203-180-254.sslip.io_browserless.png](/assets/tutorials/how-to-run-automated-e2-e-tests-with-stormkit-and-browserless/import-screen.png)
+![stormkit.116-203-180-254.sslip.io_browserless.png](/tutorials/how-to-run-automated-e2-e-tests-with-stormkit-and-browserless/import-screen.png)
 
 </div>
 
@@ -193,7 +193,7 @@ Now we need to configure Stormkit to use the Browserless endpoint for our tests.
 
 <div class="img-wrapper">
 
-![stormkit.116-203-180-254.sslip.io_apps_7_environments_7.png](/assets/tutorials/how-to-run-automated-e2-e-tests-with-stormkit-and-browserless/status-checks.png)
+![stormkit.116-203-180-254.sslip.io_apps_7_environments_7.png](/tutorials/how-to-run-automated-e2-e-tests-with-stormkit-and-browserless/status-checks.png)
 
 </div>
 
@@ -201,7 +201,7 @@ Now we need to configure Stormkit to use the Browserless endpoint for our tests.
 
 <div class="img-wrapper">
 
-![stormkit.116-203-180-254.sslip.io_apps_7_environments_7_deployments_110.png](/assets/tutorials/how-to-run-automated-e2-e-tests-with-stormkit-and-browserless/status-checks-ran.png)
+![stormkit.116-203-180-254.sslip.io_apps_7_environments_7_deployments_110.png](/tutorials/how-to-run-automated-e2-e-tests-with-stormkit-and-browserless/status-checks-ran.png)
 
 </div>
 

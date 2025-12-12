@@ -9,7 +9,7 @@ This tutorial guides you through the process of self-hosting Stormkit on Hetzner
 
 <div class="img-wrapper">
 
-![Hetzner Cloud Dashboard](/assets/tutorials/how-to-self-host-stormkit-on-hetzner-cloud/console_hetzner_cloud_projects.png)
+![Hetzner Cloud Dashboard](/tutorials/how-to-self-host-stormkit-on-hetzner-cloud/console_hetzner_cloud_projects.png)
 
 </div>
 
