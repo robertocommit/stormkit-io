@@ -82,7 +82,9 @@ func Magic(opts MagicOpts) {
 				Logger:                  logger,
 				DNS01Solver: &certmagic.DNS01Solver{
 					DNSManager: certmagic.DNSManager{
-						DNSProvider: &route53.Provider{},
+						DNSProvider: &route53.Provider{
+							HostedZoneID: os.Getenv("STORMKIT_DEV_ZONE_ID"),
+						},
 					},
 				},
 			}),
