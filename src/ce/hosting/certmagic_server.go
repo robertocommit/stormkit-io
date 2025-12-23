@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	"github.com/caddyserver/certmagic"
+	"github.com/libdns/route53"
 	"github.com/stormkit-io/stormkit-io/src/ce/api/admin"
 	"github.com/stormkit-io/stormkit-io/src/ce/api/app/appconf"
 	"github.com/stormkit-io/stormkit-io/src/lib/config"
@@ -76,7 +77,7 @@ func Magic(opts MagicOpts) {
 				Logger:                  logger,
 				DNS01Solver: &certmagic.DNS01Solver{
 					DNSManager: certmagic.DNSManager{
-						DNSProvider: NewDNSProvider(),
+						DNSProvider: &route53.Provider{},
 					},
 				},
 			}),
