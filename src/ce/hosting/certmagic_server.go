@@ -18,6 +18,7 @@ import (
 	"github.com/stormkit-io/stormkit-io/src/lib/slog"
 	"github.com/stormkit-io/stormkit-io/src/lib/utils"
 	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
 )
 
 func storage(logger *zap.Logger) certmagic.Storage {
@@ -42,21 +43,22 @@ func Magic(opts MagicOpts) {
 	log.SetOutput(io.Discard)
 
 	zcnf := zap.NewProductionConfig()
-	// zcnf.Level = zap.NewAtomicLevelAt(zapcore.FatalLevel + 1) // Disable all logs
+
+	if os.Getenv("STORMKIT_DISABLE_ACME_LOGS") == "true" {
+		zcnf.Level = zap.NewAtomicLevelAt(zapcore.FatalLevel + 1) // Disable all logs
+	}
+
 	logger, _ := zcnf.Build()
+	defaultCA := utils.GetString(os.Getenv("STORMKIT_ACME_CA"), certmagic.LetsEncryptProductionCA)
 
 	certmagic.HTTPPort = utils.StringToInt(utils.GetString(os.Getenv("STORMKIT_HTTP_PORT"), "80"))
 	certmagic.HTTPSPort = utils.StringToInt(utils.GetString(os.Getenv("STORMKIT_HTTPS_PORT"), "443"))
 	certmagic.Default.Storage = storage(logger)
 	certmagic.Default.Logger = logger
 	certmagic.DefaultACME.Agreed = true
-	certmagic.DefaultACME.CA = certmagic.LetsEncryptProductionCA
+	certmagic.DefaultACME.CA = defaultCA
 	certmagic.DefaultACME.Email = os.Getenv("STORMKIT_ACME_EMAIL")
 	certmagic.DefaultACME.Logger = logger
-
-	if config.IsStormkitCloud() {
-		certmagic.DefaultACME.CA = certmagic.GoogleTrustProductionCA
-	}
 
 	managedDomain := strings.Split(admin.MustConfig().DomainConfig.Dev, "//")[1]
 	certmagic.Default.DefaultServerName = managedDomain
@@ -73,7 +75,7 @@ func Magic(opts MagicOpts) {
 	if config.IsStormkitCloud() {
 		server.Issuers = []certmagic.Issuer{
 			certmagic.NewACMEIssuer(server, certmagic.ACMEIssuer{
-				CA:                      certmagic.GoogleTrustProductionCA,
+				CA:                      defaultCA,
 				Email:                   "admin@stormkit.io",
 				Agreed:                  true,
 				DisableTLSALPNChallenge: true,
