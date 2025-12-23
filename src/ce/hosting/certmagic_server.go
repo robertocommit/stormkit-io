@@ -44,7 +44,7 @@ func Magic(opts MagicOpts) {
 
 	zcnf := zap.NewProductionConfig()
 
-	if os.Getenv("STORMKIT_DISABLE_ACME_LOGS") == "true" {
+	if os.Getenv("STORMKIT_ENABLE_ACME_LOGS") != "true" {
 		zcnf.Level = zap.NewAtomicLevelAt(zapcore.FatalLevel + 1) // Disable all logs
 	}
 
