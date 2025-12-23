@@ -73,7 +73,7 @@ func Magic(opts MagicOpts) {
 	if config.IsStormkitCloud() {
 		server.Issuers = []certmagic.Issuer{
 			certmagic.NewACMEIssuer(server, certmagic.ACMEIssuer{
-				CA:                      certmagic.LetsEncryptProductionCA,
+				CA:                      certmagic.GoogleTrustProductionCA,
 				Email:                   "admin@stormkit.io",
 				Agreed:                  true,
 				DisableTLSALPNChallenge: true,
