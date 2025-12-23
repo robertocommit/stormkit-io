@@ -90,7 +90,7 @@ func (d *DNSProvider) AppendRecords(ctx context.Context, zone string, records []
 			r.Data = strconv.Quote(r.Data)
 		}
 
-		r.TTL = time.Duration(60) * time.Second
+		r.TTL = time.Duration(60)
 		input := d.prepareInput("UPSERT", zone, r)
 
 		if _, err := d.awscli.Route53().ChangeResourceRecordSets(ctx, input); err != nil {
