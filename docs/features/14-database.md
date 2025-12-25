@@ -1,6 +1,7 @@
 ---
 title: Database
 description: Learn how to attach a PostgreSQL schema to your environment and run automatic migrations on deployment.
+version: v1.26.0
 ---
 
 # Database
