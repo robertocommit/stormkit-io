@@ -2,6 +2,140 @@
 
 ## v1.25.0
 
+[compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.25.0...main)
+
+### 🚀 Enhancements
+
+- Update pricing ([4a6ed54](https://github.com/stormkit-io/stormkit-io/commit/4a6ed54))
+- Endpoint to fetch env schema ([1d8a0c0](https://github.com/stormkit-io/stormkit-io/commit/1d8a0c0))
+- Endpoint to create schema ([93f5531](https://github.com/stormkit-io/stormkit-io/commit/93f5531))
+- Attach schema to env ([44aac9f](https://github.com/stormkit-io/stormkit-io/commit/44aac9f))
+- Create dedicated users for schemas ([c27846e](https://github.com/stormkit-io/stormkit-io/commit/c27846e))
+- Upgrade mise ([bacd0c9](https://github.com/stormkit-io/stormkit-io/commit/bacd0c9))
+- Configure schema migrations ([331ad21](https://github.com/stormkit-io/stormkit-io/commit/331ad21))
+- Move env navigation on the side ([d3a0d67](https://github.com/stormkit-io/stormkit-io/commit/d3a0d67))
+- Configure schema ([f419f41](https://github.com/stormkit-io/stormkit-io/commit/f419f41))
+- Store migrations path for deployment ([0cd61b4](https://github.com/stormkit-io/stormkit-io/commit/0cd61b4))
+- Migrate deployment upload results to jsonb structure ([0537d48](https://github.com/stormkit-io/stormkit-io/commit/0537d48))
+- Store migrations zip with deployment artifacts ([9e2e2ca](https://github.com/stormkit-io/stormkit-io/commit/9e2e2ca))
+- Include only sql files in the migrations zip ([c188bb5](https://github.com/stormkit-io/stormkit-io/commit/c188bb5))
+- Run schema migrations ([34a2000](https://github.com/stormkit-io/stormkit-io/commit/34a2000))
+- Display migration details in deployment logs ([79f5cd2](https://github.com/stormkit-io/stormkit-io/commit/79f5cd2))
+- Endpoint to drop schema ([8181def](https://github.com/stormkit-io/stormkit-io/commit/8181def))
+- Add support for deleting schemas ([674e205](https://github.com/stormkit-io/stormkit-io/commit/674e205))
+- Track audit logs ([0c8f81c](https://github.com/stormkit-io/stormkit-io/commit/0c8f81c))
+- Enable database integrations for self-hosted environments ([b93214a](https://github.com/stormkit-io/stormkit-io/commit/b93214a))
+- Stop next steps if migrations fail ([72424cc](https://github.com/stormkit-io/stormkit-io/commit/72424cc))
+
+### 🩹 Fixes
+
+- Comment ([09f68ee](https://github.com/stormkit-io/stormkit-io/commit/09f68ee))
+- Broken links ([a6bccfb](https://github.com/stormkit-io/stormkit-io/commit/a6bccfb))
+- Asset paths ([bf1f74a](https://github.com/stormkit-io/stormkit-io/commit/bf1f74a))
+- Ttl ([d5663ed](https://github.com/stormkit-io/stormkit-io/commit/d5663ed))
+- Failing spec ([dff8826](https://github.com/stormkit-io/stormkit-io/commit/dff8826))
+
+### 💅 Refactors
+
+- Use mui instead of tailwind ([12b0ceb](https://github.com/stormkit-io/stormkit-io/commit/12b0ceb))
+- Code styling ([56b1a20](https://github.com/stormkit-io/stormkit-io/commit/56b1a20))
+- Code styling ([9298e5b](https://github.com/stormkit-io/stormkit-io/commit/9298e5b))
+- Use switch ([ed38d35](https://github.com/stormkit-io/stormkit-io/commit/ed38d35))
+- Rename field ([6ee3d72](https://github.com/stormkit-io/stormkit-io/commit/6ee3d72))
+- Improve code quality ([f9aacea](https://github.com/stormkit-io/stormkit-io/commit/f9aacea))
+
+### 📖 Documentation
+
+- Document new feature ([df44126](https://github.com/stormkit-io/stormkit-io/commit/df44126))
+- Introduce database integration ([782d813](https://github.com/stormkit-io/stormkit-io/commit/782d813))
+- Add self-hosted banner ([89d6c7d](https://github.com/stormkit-io/stormkit-io/commit/89d6c7d))
+- Add screenshots ([edf6956](https://github.com/stormkit-io/stormkit-io/commit/edf6956))
+- Attach version ([a23c419](https://github.com/stormkit-io/stormkit-io/commit/a23c419))
+
+### 🏡 Chore
+
+- Minor styling improvements ([fce11d4](https://github.com/stormkit-io/stormkit-io/commit/fce11d4))
+- Implement ui structure for database access ([a257062](https://github.com/stormkit-io/stormkit-io/commit/a257062))
+- Enable schema endpoints for development ([dc47148](https://github.com/stormkit-io/stormkit-io/commit/dc47148))
+- Use appropriate names for variables ([fc6f670](https://github.com/stormkit-io/stormkit-io/commit/fc6f670))
+- Add restart command ([f773731](https://github.com/stormkit-io/stormkit-io/commit/f773731))
+- Return nil when schema does not exist ([b4fefe3](https://github.com/stormkit-io/stormkit-io/commit/b4fefe3))
+- Use a clearer language for feature description ([ea42ab2](https://github.com/stormkit-io/stormkit-io/commit/ea42ab2))
+- Handle empty schemas ([59a50d3](https://github.com/stormkit-io/stormkit-io/commit/59a50d3))
+- Use restart instead of stop and start ([97d91aa](https://github.com/stormkit-io/stormkit-io/commit/97d91aa))
+- Parameterize ssl mode ([37878e5](https://github.com/stormkit-io/stormkit-io/commit/37878e5))
+- Quote role names ([181ad43](https://github.com/stormkit-io/stormkit-io/commit/181ad43))
+- Remove if not exists ([d9a1be8](https://github.com/stormkit-io/stormkit-io/commit/d9a1be8))
+- Return status conflict when schema already exists ([59a8269](https://github.com/stormkit-io/stormkit-io/commit/59a8269))
+- Improve code quality ([15f77de](https://github.com/stormkit-io/stormkit-io/commit/15f77de))
+- Add limits to app user ([b8581f9](https://github.com/stormkit-io/stormkit-io/commit/b8581f9))
+- Rename variable ([c6f461d](https://github.com/stormkit-io/stormkit-io/commit/c6f461d))
+- Improve subtitle ([d2bff82](https://github.com/stormkit-io/stormkit-io/commit/d2bff82))
+- Better mobile support ([7af6c2f](https://github.com/stormkit-io/stormkit-io/commit/7af6c2f))
+- Remove unused fields and endpoints ([ef6c172](https://github.com/stormkit-io/stormkit-io/commit/ef6c172))
+- Remove unused field ([0f8ffa5](https://github.com/stormkit-io/stormkit-io/commit/0f8ffa5))
+- Remove unused types and methods ([6a11b78](https://github.com/stormkit-io/stormkit-io/commit/6a11b78))
+- Remove development guard ([6466954](https://github.com/stormkit-io/stormkit-io/commit/6466954))
+- Add support for zipping only certain files ([992c521](https://github.com/stormkit-io/stormkit-io/commit/992c521))
+- New zip iterator method ([5663245](https://github.com/stormkit-io/stormkit-io/commit/5663245))
+- Default ssl mode to disable ([a85ce3e](https://github.com/stormkit-io/stormkit-io/commit/a85ce3e))
+- Get file should download zip content only for sk-client files ([9ddbf17](https://github.com/stormkit-io/stormkit-io/commit/9ddbf17))
+- Helper method to create zips in memory ([6d0d05d](https://github.com/stormkit-io/stormkit-io/commit/6d0d05d))
+- Export variable ([a13b350](https://github.com/stormkit-io/stormkit-io/commit/a13b350))
+- Ignore vite folder ([e930e43](https://github.com/stormkit-io/stormkit-io/commit/e930e43))
+- Add migration id column ([5b4fc80](https://github.com/stormkit-io/stormkit-io/commit/5b4fc80))
+- Use path instead of filepath ([b1c6ec3](https://github.com/stormkit-io/stormkit-io/commit/b1c6ec3))
+- Return 204 ([c0fddb5](https://github.com/stormkit-io/stormkit-io/commit/c0fddb5))
+- Move mutex one level above ([32c0775](https://github.com/stormkit-io/stormkit-io/commit/32c0775))
+- Handle close properly ([62f1a69](https://github.com/stormkit-io/stormkit-io/commit/62f1a69))
+- Skip migrations when not on default branch ([965dd84](https://github.com/stormkit-io/stormkit-io/commit/965dd84))
+- Return error ([57ccce2](https://github.com/stormkit-io/stormkit-io/commit/57ccce2))
+- Handle error responses better ([fb187ca](https://github.com/stormkit-io/stormkit-io/commit/fb187ca))
+- Store error in db ([e948bf9](https://github.com/stormkit-io/stormkit-io/commit/e948bf9))
+- Sanitize inputs ([71d7fc1](https://github.com/stormkit-io/stormkit-io/commit/71d7fc1))
+- Make sure response is not nil ([1e586d8](https://github.com/stormkit-io/stormkit-io/commit/1e586d8))
+- Pass down glob pattern ([2b6b7bf](https://github.com/stormkit-io/stormkit-io/commit/2b6b7bf))
+- Improve sanitization ([6dab458](https://github.com/stormkit-io/stormkit-io/commit/6dab458))
+- Remove app_members table which is no longer used ([48e01e1](https://github.com/stormkit-io/stormkit-io/commit/48e01e1))
+- Minor improvements to team members logic ([db7f99c](https://github.com/stormkit-io/stormkit-io/commit/db7f99c))
+- Add reset-data command ([8e1bdf6](https://github.com/stormkit-io/stormkit-io/commit/8e1bdf6))
+- Use method from deploy package ([2780c5c](https://github.com/stormkit-io/stormkit-io/commit/2780c5c))
+- Add helper methods for acquiring db locks ([0ae324c](https://github.com/stormkit-io/stormkit-io/commit/0ae324c))
+- Remove flaky statement ([090ef1e](https://github.com/stormkit-io/stormkit-io/commit/090ef1e))
+- Use background context ([44a2c45](https://github.com/stormkit-io/stormkit-io/commit/44a2c45))
+- Return result even when storing migration fails ([c6b103b](https://github.com/stormkit-io/stormkit-io/commit/c6b103b))
+- Use single test to not break transactions ([28073f5](https://github.com/stormkit-io/stormkit-io/commit/28073f5))
+- Helper method to fetch a single team member ([3962269](https://github.com/stormkit-io/stormkit-io/commit/3962269))
+- Check if member exists ([73accdb](https://github.com/stormkit-io/stormkit-io/commit/73accdb))
+- Remove casting to seconds ([1e12475](https://github.com/stormkit-io/stormkit-io/commit/1e12475))
+- Use route53 pckg for dns management ([38d3723](https://github.com/stormkit-io/stormkit-io/commit/38d3723))
+- Disable aws logs ([5ae1214](https://github.com/stormkit-io/stormkit-io/commit/5ae1214))
+- Use google trust certificate ([4223b5d](https://github.com/stormkit-io/stormkit-io/commit/4223b5d))
+- Update issuer ca ([72c7e8c](https://github.com/stormkit-io/stormkit-io/commit/72c7e8c))
+- Make ca configurable ([4ac7774](https://github.com/stormkit-io/stormkit-io/commit/4ac7774))
+- Logs should be opt-in ([61c2bbc](https://github.com/stormkit-io/stormkit-io/commit/61c2bbc))
+- Specify hosted zone ([038701e](https://github.com/stormkit-io/stormkit-io/commit/038701e))
+- Use static credentials ([c624999](https://github.com/stormkit-io/stormkit-io/commit/c624999))
+- Remove unused file ([bc0b092](https://github.com/stormkit-io/stormkit-io/commit/bc0b092))
+- Remove unused field ([1ee30c6](https://github.com/stormkit-io/stormkit-io/commit/1ee30c6))
+- Inject postgres vars when migrations are enabled ([9d450c0](https://github.com/stormkit-io/stormkit-io/commit/9d450c0))
+- Minor tweaks for db integration ([b963f44](https://github.com/stormkit-io/stormkit-io/commit/b963f44))
+- Include database_url environment variable ([5d52cc5](https://github.com/stormkit-io/stormkit-io/commit/5d52cc5))
+- Introduce database page ([69847f1](https://github.com/stormkit-io/stormkit-io/commit/69847f1))
+- Use sql highlighter ([a900153](https://github.com/stormkit-io/stormkit-io/commit/a900153))
+- Display database icon ([54911e4](https://github.com/stormkit-io/stormkit-io/commit/54911e4))
+- Use correct parameters ([629d7fb](https://github.com/stormkit-io/stormkit-io/commit/629d7fb))
+- Display alert for cloud users ([96f79b1](https://github.com/stormkit-io/stormkit-io/commit/96f79b1))
+- Do not use prepared statements for migrations ([51bf8fc](https://github.com/stormkit-io/stormkit-io/commit/51bf8fc))
+- Update package locks ([1a30bb1](https://github.com/stormkit-io/stormkit-io/commit/1a30bb1))
+- Use filepath instead of path ([7d067ab](https://github.com/stormkit-io/stormkit-io/commit/7d067ab))
+
+### ❤️ Contributors
+
+- Savas Vedova <savas@stormkit.io>
+
+## v1.25.0
+
 [compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.24.0...main)
 
 ### 🚀 Enhancements
