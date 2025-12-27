@@ -2,7 +2,7 @@
 
 [Stormkit](https://www.stormkit.io) is a hosting solution for seamless deployment and management of modern web applications.
 
-![Stormkit](./.github/assets/deployment-page.png)
+![Stormkit](./.github/assets/env-screen.png)
 
 ## Cloud Edition
 
