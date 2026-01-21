@@ -93,8 +93,6 @@ func TimedOutDeployments(ctx context.Context) error {
 	}
 
 	for _, did := range dids {
-		slog.Infof("timing out deployment: %s", did.String())
-
 		if err := deploy.NewStore().TimeoutDeployment(ctx, did); err != nil {
 			slog.Errorf("error while timing out deployment %s: %s", did.String(), err.Error())
 		}
