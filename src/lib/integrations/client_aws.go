@@ -3,6 +3,7 @@ package integrations
 import (
 	"context"
 	"fmt"
+	"os"
 	"strings"
 	"sync"
 
@@ -52,6 +53,16 @@ func AWS(args ClientArgs, opts *AWSOptions) (*AWSClient, error) {
 
 	if args.Region == "" && conf.AWS != nil {
 		args.Region = conf.AWS.Region
+	}
+
+	if args.AccessKey == "" && args.SecretKey == "" {
+		if accessKey := os.Getenv("AWS_ACCESS_KEY_ID"); accessKey != "" {
+			args.AccessKey = accessKey
+		}
+
+		if secretKey := os.Getenv("AWS_SECRET_ACCESS_KEY"); secretKey != "" {
+			args.SecretKey = secretKey
+		}
 	}
 
 	var awsConfig aws.Config
