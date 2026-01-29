@@ -156,8 +156,6 @@ func Error(err error, slogMessage ...string) *Response {
 		slog.Error(slogMessage[0])
 	}
 
-	slog.Errorf("http response error: %s", err.Error())
-
 	if serr, ok := err.(*shttperr.Error); ok {
 		status := serr.Status()
 
