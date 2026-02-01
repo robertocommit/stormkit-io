@@ -32,7 +32,7 @@ export const useFetchEnvironments = ({
       return;
     }
 
-    setLoading(!app?.refreshToken);
+    setLoading(true);
     setError(null);
 
     api
@@ -44,7 +44,7 @@ export const useFetchEnvironments = ({
             res.envs.map(e => ({
               ...e,
               name: e.env,
-            }))
+            })),
           );
         }
       })
@@ -57,7 +57,7 @@ export const useFetchEnvironments = ({
     return () => {
       unmounted = true;
     };
-  }, [app?.id, app?.displayName, app?.refreshToken]);
+  }, [app?.id, app?.displayName]);
 
   return { environments, error, loading, hasNextPage };
 };
@@ -104,7 +104,7 @@ export const useFetchStatus = ({
       return;
     }
 
-    setLoading(!app.refreshToken);
+    setLoading(true);
 
     api
       .post<FetchStatusAPIResponse>("/app/proxy", {
@@ -128,7 +128,7 @@ export const useFetchStatus = ({
     return () => {
       unmounted = true;
     };
-  }, [domain, app.id, app.refreshToken, environment.published]);
+  }, [domain, app.id, environment.published]);
 
   return { status, loading };
 };

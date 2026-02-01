@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import Spinner from "~/components/Spinner";
-import InfoBox from "~/components/InfoBox";
 import Error404 from "~/components/Errors/Error404";
 import { useFetchApp } from "./actions";
 import { useFetchEnvironments } from "./environments/actions";
@@ -38,10 +37,10 @@ export default function AppProvider({ children }: Props) {
 
   if (error || envs.error) {
     return (
-      <InfoBox type={InfoBox.ERROR}>
-        {error ||
-          "Something went wrong on our side. Please try again. If the problem persists reach us out through Discord or email."}
-      </InfoBox>
+      <Typography color="error" sx={{ textAlign: "center", mt: 2 }}>
+        Something went wrong on our side. Please try again. If the problem
+        persists reach us out through Discord or email.
+      </Typography>
     );
   }
 

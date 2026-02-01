@@ -36,28 +36,11 @@ export const useFetchApp = ({ appId }: FetchAppProps): FetchAppReturnValue => {
     setLoading(!refreshToken); // Do not refresh when updating app object.
     setError(null);
 
-    if (app && refreshToken) {
-      setApp({ ...app, refreshToken });
-    }
-
     api
       .fetch<FetchAppAPIResponse>(`/app/${appId}`)
       .then(res => {
-        const app = res.app;
-        const pieces = app.repo.split("/");
-        const provider = pieces.shift();
-
-        if (
-          provider === "github" ||
-          provider === "gitlab" ||
-          provider === "bitbucket"
-        ) {
-          app.provider = provider;
-          app.name = pieces.join("/");
-        }
-
         if (unmounted !== true) {
-          setApp({ ...app, refreshToken });
+          setApp(res?.app);
         }
       })
       .catch(async res => {
@@ -75,7 +58,7 @@ export const useFetchApp = ({ appId }: FetchAppProps): FetchAppReturnValue => {
         } catch (e) {
           if (unmounted !== true) {
             setError(
-              "Something went wrong on our side. Please try again. If the problem persists reach us out through Discord or email."
+              "Something went wrong on our side. Please try again. If the problem persists reach us out through Discord or email.",
             );
           }
         }
