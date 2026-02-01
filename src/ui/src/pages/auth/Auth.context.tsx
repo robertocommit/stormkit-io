@@ -44,7 +44,7 @@ export default function ContextProvider({ children }: Props) {
   } = useFetchActiveProviders();
   const { teams, loading: tLoading } = useFetchTeams({ refreshToken, user });
 
-  const shouldRedirect = !loading && !user && !pathname.includes("/auth");
+  const shouldRedirect = !loading && !user && pathname !== "/auth";
 
   useEffect(() => {
     if (shouldRedirect) {
