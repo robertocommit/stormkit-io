@@ -88,7 +88,7 @@ func (m *Mise) InstallMise(ctx context.Context) error {
 			`curl https://mise.run | sh && echo 'eval "$(~/.local/bin/mise activate bash)"' >> ~/.bashrc`,
 		},
 		Env: []string{
-			"MISE_VERSION=" + utils.GetString(os.Getenv("MISE_VERSION"), "v2025.12.2"),
+			"MISE_VERSION=" + utils.GetString(os.Getenv("MISE_VERSION"), "v2026.2.3"),
 			"PATH=" + os.Getenv("PATH"),
 			"HOME=" + os.Getenv("HOME"),
 		},
@@ -320,7 +320,7 @@ func (m *Mise) Version() (string, error) {
 // Version retrieves the version of mise installed on the system.
 func (m *Mise) SelfUpdate(ctx context.Context) error {
 	cmd := sys.Command(ctx, sys.CommandOpts{
-		String: "mise self-update --yes",
+		String: "mise self-update --yes --force",
 	})
 
 	output, err := cmd.Output()
