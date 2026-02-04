@@ -15,8 +15,6 @@ import (
 )
 
 var tableTeams = "teams"
-var tableUsers = "users"
-var tableUserEmails = "user_emails"
 var tableApps = "apps"
 var tableTeamMembers = "team_members"
 
