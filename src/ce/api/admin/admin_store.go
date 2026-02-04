@@ -17,9 +17,10 @@ import (
 )
 
 var stmt = struct {
-	selectConfig string
-	upsertConfig string
-	deleteConfig string
+	selectConfig     string
+	upsertConfig     string
+	deleteConfig     string
+	selectTotalUsers string
 }{
 	selectConfig: `
 		SELECT config_data FROM stormkit_config LIMIT 1;
@@ -38,6 +39,10 @@ var stmt = struct {
 
 	deleteConfig: `
 		DELETE FROM stormkit_config;
+	`,
+
+	selectTotalUsers: `
+		SELECT COUNT(user_id) FROM users WHERE deleted_at IS NULL;
 	`,
 }
 
@@ -228,6 +233,23 @@ func (s *store) DeleteConfig(ctx context.Context) error {
 	}
 
 	return err
+}
+
+// TotalUsers returns the total number of users in the instance.
+func (s *store) TotalUsers(ctx context.Context) (int64, error) {
+	var count int64
+
+	row, err := s.QueryRow(ctx, stmt.selectTotalUsers)
+
+	if err != nil {
+		return 0, err
+	}
+
+	if err = row.Scan(&count); err == sql.ErrNoRows {
+		return 0, nil
+	}
+
+	return count, err
 }
 
 // ResetCache is a function that invalidates the admin configuration cache.

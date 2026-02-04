@@ -178,6 +178,16 @@ func ValidateLicense(key string) (*License, error) {
 		return nil, fmt.Errorf("license is either invalid or no longer active")
 	}
 
+	totalUsers, err := Store().TotalUsers(context.Background())
+
+	if err != nil {
+		return nil, fmt.Errorf("error while counting users: %v", err)
+	}
+
+	if int64(data.License.Seats) < totalUsers {
+		return nil, fmt.Errorf("license only allows %d seats, but there are %d users in the system", data.License.Seats, totalUsers)
+	}
+
 	// We need to generate a full-blown license because we're going to store it in the DB
 	return &License{
 		Seats:    data.License.Seats,

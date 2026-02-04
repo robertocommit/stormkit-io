@@ -96,6 +96,51 @@ func (s *LicenseSuite) Test_FetchingLicenseFromDB_Success() {
 	s.Equal("abcd-efgh-ijkl-mnop", cnf.LicenseConfig.Key)
 }
 
+func (s *LicenseSuite) Test_FetchingLicenseFromDB_FailMoreUsers() {
+	for range 2 {
+		s.MockUser()
+	}
+
+	license := admin.NewLicense(admin.NewLicenseArgs{
+		Seats:   1,
+		Premium: true,
+		Key:     "abcd-efgh-ijkl-mnop",
+	})
+
+	cnf, err := admin.Store().Config(context.Background())
+	s.NoError(err)
+
+	cnf.LicenseConfig = &admin.LicenseConfig{
+		Key: license.Key,
+	}
+
+	headers := make(http.Header)
+	headers.Set("Content-Type", "application/json")
+
+	s.mockRequest.On("URL", "https://api.stormkit.io/v1/license/check?token=abcd-efgh-ijkl-mnop").Return(s.mockRequest).Once()
+	s.mockRequest.On("Method", http.MethodGet).Return(s.mockRequest).Once()
+	s.mockRequest.On("Headers", headers).Return(s.mockRequest).Once()
+	s.mockRequest.On("WithExponentialBackoff", 5*time.Minute, 10).Return(s.mockRequest).Once()
+	s.mockRequest.On("Do").Return(&shttp.HTTPResponse{
+		Response: &http.Response{
+			StatusCode: http.StatusOK,
+			Body:       io.NopCloser(strings.NewReader(`{ "license": {"seats": 1, "premium": true, "version":"2025-09-26"} }`)),
+		},
+	}, nil).Once()
+
+	s.NoError(admin.Store().UpsertConfig(context.Background(), cnf))
+
+	// Because we have 2 users but license allows only 1 seat, we should get free license
+	l := admin.CurrentLicense()
+	s.NotNil(l)
+	s.Equal(-1, l.Seats)
+	s.False(l.IsEnterprise())
+
+	cnf, err = admin.Store().Config(context.Background())
+	s.NoError(err)
+	s.Equal("abcd-efgh-ijkl-mnop", cnf.LicenseConfig.Key)
+}
+
 func (s *LicenseSuite) Test_FetchingLicenseFromDB_ExpiredLicense() {
 	license := admin.NewLicense(admin.NewLicenseArgs{
 		Seats: 5,
