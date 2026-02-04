@@ -1,7 +1,7 @@
 import type { FormValues } from "../actions";
 import { useState, useMemo } from "react";
 import Box from "@mui/material/Box";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import Card from "~/components/Card";
 import CardHeader from "~/components/CardHeader";
 import CardFooter from "~/components/CardFooter";
@@ -25,16 +25,16 @@ export default function TabConfigEnvVars({
   const [isLoading, setLoading] = useState(false);
   const [isChanged, setIsChanged] = useState(false);
   const [vars, setVars] = useState<Record<string, string>>(
-    env.build.vars || {}
+    env.build.vars || {},
   );
 
   const defaultValue = useMemo(() => {
     return JSON.parse(
       JSON.stringify(
-        env?.build?.vars || (env ? {} : { NODE_ENV: "development" })
-      )
+        env?.build?.vars || (env ? {} : { NODE_ENV: "development" }),
+      ),
     );
-  }, [env.build.vars]);
+  }, []);
 
   // Remove special variables
   delete defaultValue.SK_CWD;
@@ -51,7 +51,7 @@ export default function TabConfigEnvVars({
 
         const values: FormValues = buildFormValues(
           { ...env, build: { ...env.build, vars } },
-          e.target as HTMLFormElement
+          e.target as HTMLFormElement,
         );
 
         const root = env.build?.vars?.["SK_CWD"];

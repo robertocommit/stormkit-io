@@ -34,7 +34,7 @@ interface NavItemParent {
 
 const generateListItems = (
   app: App,
-  edition?: "self-hosted" | "cloud" | "development"
+  edition?: "self-hosted" | "cloud" | "development",
 ): NavItemParent[] => [
   {
     title: "Deployment settings",

@@ -25,11 +25,11 @@ interface Props {
 
 export default function AppProvider({ children }: Props) {
   const appId = useParams().id;
-  const { app, error, loading, setRefreshToken } = useFetchApp({
+  const { app, error, loading, refreshToken, setRefreshToken } = useFetchApp({
     appId,
   });
 
-  const envs = useFetchEnvironments({ app });
+  const envs = useFetchEnvironments({ app, refreshToken });
 
   if (loading) {
     return <Spinner primary pageCenter />;

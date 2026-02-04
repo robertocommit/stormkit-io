@@ -3,6 +3,7 @@ import api from "~/utils/api/Api";
 
 interface FetchEnvironmentsProps {
   app?: App;
+  refreshToken?: number;
 }
 
 interface FetchEnvironmentsReturnValue {
@@ -19,6 +20,7 @@ interface FetchEnvironmentsAPIResponse {
 
 export const useFetchEnvironments = ({
   app,
+  refreshToken,
 }: FetchEnvironmentsProps): FetchEnvironmentsReturnValue => {
   const [environments, setEnvironments] = useState<Array<Environment>>([]);
   const [hasNextPage, setHasNextPage] = useState(false);
@@ -57,7 +59,7 @@ export const useFetchEnvironments = ({
     return () => {
       unmounted = true;
     };
-  }, [app?.id, app?.displayName]);
+  }, [app?.id, app?.displayName, refreshToken]);
 
   return { environments, error, loading, hasNextPage };
 };
