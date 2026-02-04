@@ -34,7 +34,7 @@ var sqlTemplates = struct {
 	selectTeamMembers: template.Must(template.New("selectTeamMembers").Parse(`
 		SELECT
 			u.user_id, u.first_name, u.last_name, u.display_name, 
-			(SELECT ue.email FROM user_emails ue WHERE ue.user_id = u.user_id AND ue.is_primary IS TRUE),
+			(SELECT ue.email FROM user_emails ue WHERE ue.user_id = u.user_id AND ue.is_primary IS TRUE LIMIT 1),
 			tm.member_id, tm.member_role, tm.membership_status
 		FROM team_members tm
 		LEFT JOIN users u ON u.user_id = tm.user_id
