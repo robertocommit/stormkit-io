@@ -1,6 +1,7 @@
 package adminhandlers
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/stormkit-io/stormkit-io/src/ce/api/user"
@@ -13,7 +14,7 @@ func handlerMise(req *user.RequestContext) *shttp.Response {
 	version, err := mise.Client().Version()
 
 	if err != nil {
-		return shttp.Error(err)
+		return shttp.Error(err, fmt.Sprintf("error while fetching mise version: %s", err.Error()))
 	}
 
 	services := []string{
@@ -24,7 +25,7 @@ func handlerMise(req *user.RequestContext) *shttp.Response {
 	status, err := rediscache.Status(req.Context(), "mise_update", services)
 
 	if err != nil {
-		return shttp.Error(err)
+		return shttp.Error(err, fmt.Sprintf("error while fetching mise status: %s", err.Error()))
 	}
 
 	return &shttp.Response{
