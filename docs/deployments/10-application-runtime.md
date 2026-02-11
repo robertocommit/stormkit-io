@@ -29,13 +29,13 @@ To run a Go program, you typically compile a binary during the build step and st
 
 Example `.go-version`:
 
-```text
+```bash
 1.22.5
 ```
 
 Example `mise.toml`:
 
-```toml
+```bash
 [tools]
 go = "1.22.5"
 ```
