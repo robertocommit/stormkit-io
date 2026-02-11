@@ -96,6 +96,8 @@ func Magic(opts MagicOpts) {
 
 		if err := server.ManageAsync(context.Background(), managed); err != nil {
 			slog.Errorf("error while managing async certificates: %v", err)
+		} else {
+			slog.Infof("managing certificates for domains: %s", strings.Join(managed, ", "))
 		}
 	}
 
