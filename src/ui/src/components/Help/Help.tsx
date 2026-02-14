@@ -28,7 +28,13 @@ export default function Help({
   return (
     <>
       {buttonVariant === "link" ? (
-        <Link href="#" onClick={() => setIsDrawerOpen(true)}>
+        <Link
+          href="#"
+          onClick={e => {
+            e.preventDefault();
+            setIsDrawerOpen(true);
+          }}
+        >
           {buttonText}
         </Link>
       ) : (
