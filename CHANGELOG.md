@@ -1,5 +1,45 @@
 # Changelog
 
+## v1.26.6...main
+
+[compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.6...main)
+
+### 🚀 Enhancements
+
+- Move mailer to its own section ([e8d57ba](https://github.com/stormkit-io/stormkit-io/commit/e8d57ba))
+- Inject mailer variables into the deployment ([1b65511](https://github.com/stormkit-io/stormkit-io/commit/1b65511))
+
+### 🩹 Fixes
+
+- **hosting:** Reduce lock contention in FetchAppConf ([e6f6775](https://github.com/stormkit-io/stormkit-io/commit/e6f6775))
+- Failing specs ([3035baf](https://github.com/stormkit-io/stormkit-io/commit/3035baf))
+- URL-encode credentials in SMTP connection string ([4360187](https://github.com/stormkit-io/stormkit-io/commit/4360187))
+- Add missing dependencies to useEffect hook ([ee719c0](https://github.com/stormkit-io/stormkit-io/commit/ee719c0))
+- Update mailer url description value ([c1a9103](https://github.com/stormkit-io/stormkit-io/commit/c1a9103))
+
+### 💅 Refactors
+
+- Move mailer under buildconf package ([7918faa](https://github.com/stormkit-io/stormkit-io/commit/7918faa))
+
+### 📖 Documentation
+
+- Document MAILER_URL injection and override behavior ([c5dca2d](https://github.com/stormkit-io/stormkit-io/commit/c5dca2d))
+- Update MAILER_URL description to SMTP connection string ([d3dac79](https://github.com/stormkit-io/stormkit-io/commit/d3dac79))
+- V1.26.6 ([7a39aa9](https://github.com/stormkit-io/stormkit-io/commit/7a39aa9))
+
+### 🏡 Chore
+
+- New helper component to display info tables ([985abcd](https://github.com/stormkit-io/stormkit-io/commit/985abcd))
+- Minor ui improvements ([325e1c8](https://github.com/stormkit-io/stormkit-io/commit/325e1c8))
+- Add clarification on existing vars ([d68a2c8](https://github.com/stormkit-io/stormkit-io/commit/d68a2c8))
+- Reset form errors on submission ([5a1cf85](https://github.com/stormkit-io/stormkit-io/commit/5a1cf85))
+- Ensure object is initialized ([d8d9452](https://github.com/stormkit-io/stormkit-io/commit/d8d9452))
+- Fallback to default port number ([8269761](https://github.com/stormkit-io/stormkit-io/commit/8269761))
+
+### ❤️ Contributors
+
+- Savas Vedova <savas@stormkit.io>
+
 ## v1.26.5...v1.26.6
 
 [compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.5...v1.26.6)
