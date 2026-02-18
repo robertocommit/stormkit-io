@@ -1,5 +1,139 @@
 # Changelog
 
+## v1.26.5...v1.26.6
+
+[compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.5...v1.26.6)
+
+### 🏡 Chore
+
+- Redact database_url variable ([1a3f829](https://github.com/stormkit-io/stormkit-io/commit/1a3f829))
+
+### ❤️ Contributors
+
+- Savas Vedova <savas@stormkit.io>
+
+## v1.26.4...v1.26.5
+
+[compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.4...v1.26.5)
+
+### 🚀 Enhancements
+
+- Abort functionality for mise update ([56a9d21](https://github.com/stormkit-io/stormkit-io/commit/56a9d21))
+- Stormkit auth ([35db203](https://github.com/stormkit-io/stormkit-io/commit/35db203))
+- Inject db environment variables ([2438c96](https://github.com/stormkit-io/stormkit-io/commit/2438c96))
+
+### 🩹 Fixes
+
+- Refresh references after a deployment is complete ([0f2553f](https://github.com/stormkit-io/stormkit-io/commit/0f2553f))
+- Syntax highlighting ([3b9b220](https://github.com/stormkit-io/stormkit-io/commit/3b9b220))
+- Rendering options in the correct order ([deff36e](https://github.com/stormkit-io/stormkit-io/commit/deff36e))
+- Use correct ending tag ([79356e2](https://github.com/stormkit-io/stormkit-io/commit/79356e2))
+- Endpoints order ([caff499](https://github.com/stormkit-io/stormkit-io/commit/caff499))
+- Race condition ([ba4a9d7](https://github.com/stormkit-io/stormkit-io/commit/ba4a9d7))
+
+### 📖 Documentation
+
+- Add Go runtime application guide ([24e5612](https://github.com/stormkit-io/stormkit-io/commit/24e5612))
+
+### 🏡 Chore
+
+- Add logs ([f78f878](https://github.com/stormkit-io/stormkit-io/commit/f78f878))
+- Add info ([ad171be](https://github.com/stormkit-io/stormkit-io/commit/ad171be))
+- Use combined output for more information ([0f8d994](https://github.com/stormkit-io/stormkit-io/commit/0f8d994))
+- Use scan instead of keys ([b60fa56](https://github.com/stormkit-io/stormkit-io/commit/b60fa56))
+- Update packages ([53ad711](https://github.com/stormkit-io/stormkit-io/commit/53ad711))
+- Log only if there are artifacts to be deleted ([9cfebdb](https://github.com/stormkit-io/stormkit-io/commit/9cfebdb))
+- New switch component ([846b677](https://github.com/stormkit-io/stormkit-io/commit/846b677))
+- Update theme ([b8e514a](https://github.com/stormkit-io/stormkit-io/commit/b8e514a))
+- Disable stormkit authentication url ([735f51c](https://github.com/stormkit-io/stormkit-io/commit/735f51c))
+- Add specs for new functionality in auth callback ([69d07ea](https://github.com/stormkit-io/stormkit-io/commit/69d07ea))
+- Improve error message ([172436b](https://github.com/stormkit-io/stormkit-io/commit/172436b))
+- Start using version format ([28c0a09](https://github.com/stormkit-io/stormkit-io/commit/28c0a09))
+- Add specs for switch component ([b4ceb73](https://github.com/stormkit-io/stormkit-io/commit/b4ceb73))
+- Comment out group icon for now ([08ccc29](https://github.com/stormkit-io/stormkit-io/commit/08ccc29))
+- Update packages ([7da0353](https://github.com/stormkit-io/stormkit-io/commit/7da0353))
+- Add specs ([03f9eaa](https://github.com/stormkit-io/stormkit-io/commit/03f9eaa))
+- Wait for selectors ([0747158](https://github.com/stormkit-io/stormkit-io/commit/0747158))
+- Add specs ([fc8538f](https://github.com/stormkit-io/stormkit-io/commit/fc8538f))
+- Use correct tag ([9bd4b8a](https://github.com/stormkit-io/stormkit-io/commit/9bd4b8a))
+- Add global code tag styling and UI improvements ([f77bec5](https://github.com/stormkit-io/stormkit-io/commit/f77bec5))
+- Prevent default ([f58d7ab](https://github.com/stormkit-io/stormkit-io/commit/f58d7ab))
+- Remove unnecessary file ([5301107](https://github.com/stormkit-io/stormkit-io/commit/5301107))
+
+### ❤️ Contributors
+
+- Savas Vedova <savas@stormkit.io>
+- Robertocommit ([@MilhosOU](https://github.com/MilhosOU))
+
+## v1.26.1...v1.26.4
+
+[compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.1...v1.26.4)
+
+### 🩹 Fixes
+
+- Sync env across components ([de8ba2b](https://github.com/stormkit-io/stormkit-io/commit/de8ba2b))
+
+### 🏡 Chore
+
+- New migration job ([23d8a2b](https://github.com/stormkit-io/stormkit-io/commit/23d8a2b))
+- Limit subquery results ([46bb098](https://github.com/stormkit-io/stormkit-io/commit/46bb098))
+- Unused vars ([57b6f4f](https://github.com/stormkit-io/stormkit-io/commit/57b6f4f))
+- Upgrade mise version ([32fbb12](https://github.com/stormkit-io/stormkit-io/commit/32fbb12))
+
+### ❤️ Contributors
+
+- Savas Vedova <savas@stormkit.io>
+
+## v1.26.0...v1.26.1
+
+[compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.0...v1.26.1)
+
+### 🚀 Enhancements
+
+- Prepare endpoints for stormkit auth ([a57b52f](https://github.com/stormkit-io/stormkit-io/commit/a57b52f))
+
+### 🩹 Fixes
+
+- Failing specs ([4363cba](https://github.com/stormkit-io/stormkit-io/commit/4363cba))
+- Json name ([df03e4a](https://github.com/stormkit-io/stormkit-io/commit/df03e4a))
+- Add missing mock methods ([98bf2da](https://github.com/stormkit-io/stormkit-io/commit/98bf2da))
+- Flaky test ([462e22d](https://github.com/stormkit-io/stormkit-io/commit/462e22d))
+- App type ([2ebe8b9](https://github.com/stormkit-io/stormkit-io/commit/2ebe8b9))
+
+### 📖 Documentation
+
+- V1.26.0 ([a516709](https://github.com/stormkit-io/stormkit-io/commit/a516709))
+- Update screenshot ([a8020e2](https://github.com/stormkit-io/stormkit-io/commit/a8020e2))
+- Add mockery docs ([129cc38](https://github.com/stormkit-io/stormkit-io/commit/129cc38))
+- Blog post on recent migration ([cff3b19](https://github.com/stormkit-io/stormkit-io/commit/cff3b19))
+
+### 🏡 Chore
+
+- Remove environments page ([0acd3ac](https://github.com/stormkit-io/stormkit-io/commit/0acd3ac))
+- Regenerate files with new mockery version ([65cf718](https://github.com/stormkit-io/stormkit-io/commit/65cf718))
+- Update packages ([ba9b445](https://github.com/stormkit-io/stormkit-io/commit/ba9b445))
+- Allow using different secrets ([a124732](https://github.com/stormkit-io/stormkit-io/commit/a124732))
+- Remove redundant row ([e739b87](https://github.com/stormkit-io/stormkit-io/commit/e739b87))
+- Add support for new features ([4f6904e](https://github.com/stormkit-io/stormkit-io/commit/4f6904e))
+- Helper functions for scanning bytea columns ([0379570](https://github.com/stormkit-io/stormkit-io/commit/0379570))
+- Remove fmt ([8e2506e](https://github.com/stormkit-io/stormkit-io/commit/8e2506e))
+- Add eof ([3fa9cba](https://github.com/stormkit-io/stormkit-io/commit/3fa9cba))
+- Remove fmt debug ([8891f18](https://github.com/stormkit-io/stormkit-io/commit/8891f18))
+- Store account id and make provider unique for each user ([c5b671a](https://github.com/stormkit-io/stormkit-io/commit/c5b671a))
+- Remove debug ([1dede74](https://github.com/stormkit-io/stormkit-io/commit/1dede74))
+- Take into account the provider status ([231d73b](https://github.com/stormkit-io/stormkit-io/commit/231d73b))
+- Handle timed out deployments ([d8f370d](https://github.com/stormkit-io/stormkit-io/commit/d8f370d))
+- Remove info statement ([b34a04d](https://github.com/stormkit-io/stormkit-io/commit/b34a04d))
+- Allow modifying access keys through env vars ([8e7f397](https://github.com/stormkit-io/stormkit-io/commit/8e7f397))
+- Remove log ([8c85d0d](https://github.com/stormkit-io/stormkit-io/commit/8c85d0d))
+- Use equality instead of includes ([000e34c](https://github.com/stormkit-io/stormkit-io/commit/000e34c))
+- Improve self-hosted license logic ([61fde66](https://github.com/stormkit-io/stormkit-io/commit/61fde66))
+- Guard license ([4a9de52](https://github.com/stormkit-io/stormkit-io/commit/4a9de52))
+
+### ❤️ Contributors
+
+- Savas Vedova <savas@stormkit.io>
+
 ## v1.25.0
 
 [compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.25.0...main)
