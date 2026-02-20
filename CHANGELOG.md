@@ -1,6 +1,35 @@
 # Changelog
 
-## v1.26.6...main
+## v1.26.7...v1.26.8
+
+[compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.7...v1.26.8)
+
+### 🚀 Enhancements
+
+- Job to dump schema into structure.sql ([c298a30](https://github.com/stormkit-io/stormkit-io/commit/c298a30))
+
+### 🩹 Fixes
+
+- Handle long referrer and request paths ([9cf9e07](https://github.com/stormkit-io/stormkit-io/commit/9cf9e07))
+- Null values ([eafdb00](https://github.com/stormkit-io/stormkit-io/commit/eafdb00))
+- Redirect to correct page ([a8f3351](https://github.com/stormkit-io/stormkit-io/commit/a8f3351))
+- Failing spec ([02cf649](https://github.com/stormkit-io/stormkit-io/commit/02cf649))
+
+### 📖 Documentation
+
+- V1.26.7 ([d6f1c24](https://github.com/stormkit-io/stormkit-io/commit/d6f1c24))
+- V1.26.8 ([59e94c3](https://github.com/stormkit-io/stormkit-io/commit/59e94c3))
+
+### 🏡 Chore
+
+- Use advisory lock instead of lock table ([29e98d9](https://github.com/stormkit-io/stormkit-io/commit/29e98d9))
+- Rename files ([c14a214](https://github.com/stormkit-io/stormkit-io/commit/c14a214))
+
+### ❤️ Contributors
+
+- Savas Vedova <savas@stormkit.io>
+
+## v1.26.6...v1.26.7
 
 [compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.6...main)
 
