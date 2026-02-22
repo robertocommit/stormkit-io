@@ -1,5 +1,36 @@
 # Changelog
 
+## v1.26.8...v1.26.9
+
+[compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.8...v1.26.9)
+
+### 🚀 Enhancements
+
+- Add support for user-level api keys ([2a2d054](https://github.com/stormkit-io/stormkit-io/commit/2a2d054))
+
+### 🩹 Fixes
+
+- Parameter order ([1648526](https://github.com/stormkit-io/stormkit-io/commit/1648526))
+- Failing spec ([8e46e30](https://github.com/stormkit-io/stormkit-io/commit/8e46e30))
+
+### 📖 Documentation
+
+- User level api key ([4f29f09](https://github.com/stormkit-io/stormkit-io/commit/4f29f09))
+- Announce user level api keys ([2c728d6](https://github.com/stormkit-io/stormkit-io/commit/2c728d6))
+
+### 🏡 Chore
+
+- Improve code resilience ([e633cce](https://github.com/stormkit-io/stormkit-io/commit/e633cce))
+- Better log ([853b642](https://github.com/stormkit-io/stormkit-io/commit/853b642))
+- Add debug statements for failed queries ([5dc33cc](https://github.com/stormkit-io/stormkit-io/commit/5dc33cc))
+- Do not populate user id automatically ([2324382](https://github.com/stormkit-io/stormkit-io/commit/2324382))
+- Improve test coverage ([bc53c3a](https://github.com/stormkit-io/stormkit-io/commit/bc53c3a))
+- Improve test resilience ([d7b05cc](https://github.com/stormkit-io/stormkit-io/commit/d7b05cc))
+
+### ❤️ Contributors
+
+- Savas Vedova <savas@stormkit.io>
+
 ## v1.26.7...v1.26.8
 
 [compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.7...v1.26.8)
