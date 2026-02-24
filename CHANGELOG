@@ -1,0 +1,24 @@
+# Changelog
+
+
+## v1.26.13...v1.26.14
+
+[compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.13...v1.26.14)
+
+### 🚀 Enhancements
+
+- Guide user through the authentication process ([4ae97fd](https://github.com/stormkit-io/stormkit-io/commit/4ae97fd))
+- Stop the flow for disabled providers ([aa7b9f3](https://github.com/stormkit-io/stormkit-io/commit/aa7b9f3))
+
+### 📖 Documentation
+
+- V1.26.13 ([cfb38ba](https://github.com/stormkit-io/stormkit-io/commit/cfb38ba))
+
+### 🏡 Chore
+
+- Improve provider and auth logic ([471830e](https://github.com/stormkit-io/stormkit-io/commit/471830e))
+
+### ❤️ Contributors
+
+- Savas Vedova <savas@stormkit.io>
+
