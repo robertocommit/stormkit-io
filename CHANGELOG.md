@@ -1,5 +1,24 @@
 # Changelog
 
+## v1.26.9...v1.26.10
+
+[compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.9...v1.26.10)
+
+### 🩹 Fixes
+
+- User api key removal ([e353584](https://github.com/stormkit-io/stormkit-io/commit/e353584))
+- Typography ([d9bb705](https://github.com/stormkit-io/stormkit-io/commit/d9bb705))
+
+### 📖 Documentation
+
+- V1.26.9 ([edf6310](https://github.com/stormkit-io/stormkit-io/commit/edf6310))
+- V1.26.9 ([bdad06a](https://github.com/stormkit-io/stormkit-io/commit/bdad06a))
+- V1.26.10 ([31a6b4f](https://github.com/stormkit-io/stormkit-io/commit/31a6b4f))
+
+### ❤️ Contributors
+
+- Savas Vedova <savas@stormkit.io>
+
 ## v1.26.8...v1.26.9
 
 [compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.8...v1.26.9)
