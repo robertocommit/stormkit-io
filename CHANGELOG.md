@@ -1,5 +1,27 @@
 # Changelog
 
+## v1.26.10...v1.26.11
+
+[compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.10...v1.26.11)
+
+### 🩹 Fixes
+
+- Zip deployments with empty configs ([728d82d](https://github.com/stormkit-io/stormkit-io/commit/728d82d))
+
+### 📖 Documentation
+
+- V1.26.10 ([ae0136e](https://github.com/stormkit-io/stormkit-io/commit/ae0136e))
+
+### 🏡 Chore
+
+- Add specs for fetch config flow ([c8b6141](https://github.com/stormkit-io/stormkit-io/commit/c8b6141))
+- Remove empty line ([cd15b41](https://github.com/stormkit-io/stormkit-io/commit/cd15b41))
+- Minor code improvements ([ec2ecf5](https://github.com/stormkit-io/stormkit-io/commit/ec2ecf5))
+
+### ❤️ Contributors
+
+- Savas Vedova <savas@stormkit.io>
+
 ## v1.26.9...v1.26.10
 
 [compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.9...v1.26.10)
