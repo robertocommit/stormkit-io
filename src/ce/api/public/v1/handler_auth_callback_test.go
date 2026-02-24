@@ -29,9 +29,10 @@ import (
 type HandlerAuthCallbackSuite struct {
 	suite.Suite
 	*factory.Factory
-	conn       databasetest.TestDB
-	app        *factory.MockApp
-	mockClient *mocks.Client
+	conn             databasetest.TestDB
+	app              *factory.MockApp
+	mockClient       *mocks.Client
+	defaultProviders []string
 }
 
 func (s *HandlerAuthCallbackSuite) BeforeTest(suiteName, _ string) {
@@ -39,6 +40,7 @@ func (s *HandlerAuthCallbackSuite) BeforeTest(suiteName, _ string) {
 	s.conn = databasetest.InitTx(suiteName)
 	s.Factory = factory.New(s.conn)
 	s.app = s.MockApp(s.MockUser(nil), nil)
+	s.defaultProviders = skauth.Providers
 	skauth.DefaultClient = s.mockClient
 	config.SetIsSelfHosted(true)
 }
@@ -46,6 +48,7 @@ func (s *HandlerAuthCallbackSuite) BeforeTest(suiteName, _ string) {
 func (s *HandlerAuthCallbackSuite) AfterTest(_, _ string) {
 	s.conn.CloseTx()
 	skauth.DefaultClient = nil
+	skauth.Providers = s.defaultProviders
 	config.SetIsSelfHosted(false)
 }
 
@@ -153,6 +156,8 @@ func (s *HandlerAuthCallbackSuite) Test_Success() {
 }
 
 func (s *HandlerAuthCallbackSuite) Test_Provider_EmptyConfig() {
+	skauth.DefaultClient = nil
+	skauth.Providers = []string{"invalid-provider"} // This should pass the first check, but fail when trying to get the provider configuration
 	secret := "test-secret-key-for-jwt"
 	env := s.MockEnv(s.app, map[string]any{
 		"AuthConf": &buildconf.AuthConf{
@@ -172,7 +177,7 @@ func (s *HandlerAuthCallbackSuite) Test_Provider_EmptyConfig() {
 
 	ctx := context.Background()
 	prv := &skauth.Provider{
-		Name:   skauth.ProviderX,
+		Name:   "invalid-provider",
 		Data:   skauth.ProviderData{},
 		Status: true,
 	}
@@ -185,12 +190,10 @@ func (s *HandlerAuthCallbackSuite) Test_Provider_EmptyConfig() {
 
 	s.NoError(err)
 
-	s.mockClient.On("Config").Return(nil).Once()
-
 	response := shttptest.RequestWithHeaders(
 		shttp.NewRouter().RegisterService(publicapiv1.Services).Router().Handler(),
 		shttp.MethodGet,
-		fmt.Sprintf("/v1/auth/callback?state=%s&code=test-code", s.generateStateToken(env.ID, skauth.ProviderX)),
+		fmt.Sprintf("/v1/auth/callback?state=%s&code=test-code", s.generateStateToken(env.ID, "invalid-provider")),
 		nil,
 		nil,
 	)
