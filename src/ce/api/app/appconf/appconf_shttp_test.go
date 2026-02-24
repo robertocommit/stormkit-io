@@ -117,7 +117,7 @@ func (s *ShttpSuite) Test_FetchAppConf_ByDisplayName() {
 		IsAutoDeploy: false,
 	}
 
-	deploy.NewStore().InsertDeployment(context.Background(), deployment)
+	s.NoError(deploy.NewStore().InsertDeployment(context.Background(), deployment))
 
 	confs, err := appconf.FetchConfig(fmt.Sprintf("my-app--%d.stormkit:8888", deployment.ID))
 	s.NoError(err)
