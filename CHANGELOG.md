@@ -1,5 +1,26 @@
 # Changelog
 
+## v1.26.12...v1.26.13
+
+[compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.12...v1.26.13)
+
+### 🚀 Enhancements
+
+- Refresh list after saving provider ([b33d51a](https://github.com/stormkit-io/stormkit-io/commit/b33d51a))
+
+### 📖 Documentation
+
+- V1.26.12 ([ab350af](https://github.com/stormkit-io/stormkit-io/commit/ab350af))
+
+### 🏡 Chore
+
+- Follow api standards for auth public apis ([6c97c36](https://github.com/stormkit-io/stormkit-io/commit/6c97c36))
+- Improve documentation steps ([043264b](https://github.com/stormkit-io/stormkit-io/commit/043264b))
+
+### ❤️ Contributors
+
+- Savas Vedova <savas@stormkit.io>
+
 ## v1.26.11...v1.26.12
 
 [compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.11...v1.26.12)
