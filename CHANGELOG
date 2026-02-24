@@ -1,6 +1,26 @@
 # Changelog
 
 
+## v1.26.14...v1.26.15
+
+[compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.14...v1.26.15)
+
+### 🩹 Fixes
+
+- Failing spec ([bcf2c0f](https://github.com/stormkit-io/stormkit-io/commit/bcf2c0f))
+
+### 📖 Documentation
+
+- V1.26.14 ([0776d8c](https://github.com/stormkit-io/stormkit-io/commit/0776d8c))
+
+### 🏡 Chore
+
+- Add client-specific oauth2 methods ([4af324f](https://github.com/stormkit-io/stormkit-io/commit/4af324f))
+
+### ❤️ Contributors
+
+- Savas Vedova <savas@stormkit.io>
+
 ## v1.26.13...v1.26.14
 
 [compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.13...v1.26.14)
