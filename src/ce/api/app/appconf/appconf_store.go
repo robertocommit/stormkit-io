@@ -226,6 +226,8 @@ func rowsToConfigs(rows *sql.Rows, err error) ([]*Config, error) {
 
 	cnfs := []*Config{}
 
+	defer rows.Close()
+
 	for rows.Next() {
 		var buildConf []byte         // The up-to-date build config
 		var buildConfSnapshot []byte // The build config when the deployment was created
