@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.26.11...v1.26.12
+
+[compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.11...v1.26.12)
+
+### 🏡 Chore
+
+- Make sure to close the connection ([fea7e33](https://github.com/stormkit-io/stormkit-io/commit/fea7e33))
+- Add auth behind feature flag ([05d9a33](https://github.com/stormkit-io/stormkit-io/commit/05d9a33))
+
+### ❤️ Contributors
+
+- Savas Vedova <savas@stormkit.io>
+
 ## v1.26.10...v1.26.11
 
 [compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.10...v1.26.11)
