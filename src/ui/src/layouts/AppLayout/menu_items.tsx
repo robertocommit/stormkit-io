@@ -102,7 +102,7 @@ export const envMenuItems = ({
     },
   ];
 
-  if (env.build.vars["SK_AUTH_ENABLED"] === "true") {
+  if (env.build?.vars?.["SK_AUTH_ENABLED"] === "true") {
     items.push({
       text: "Authentication",
       path: `${envPath}/auth`,
