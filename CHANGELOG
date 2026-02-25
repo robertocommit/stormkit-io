@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.26.15...v1.26.16
+
+[compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.15...v1.26.16)
+
+### 🚀 Enhancements
+
+- Implement pcke verification for x auth ([7b3d330](https://github.com/stormkit-io/stormkit-io/commit/7b3d330))
+
+### 📖 Documentation
+
+- V1.26.15 ([746ce70](https://github.com/stormkit-io/stormkit-io/commit/746ce70))
+
+### ❤️ Contributors
+
+- Savas Vedova <savas@stormkit.io>
+
 ## v1.26.14...v1.26.15
 
 [compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.14...v1.26.15)
