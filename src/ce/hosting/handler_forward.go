@@ -21,6 +21,7 @@ import (
 	"github.com/stormkit-io/stormkit-io/src/lib/shttp"
 	"github.com/stormkit-io/stormkit-io/src/lib/slog"
 	"github.com/stormkit-io/stormkit-io/src/lib/utils"
+	"go.uber.org/zap"
 	"gopkg.in/guregu/null.v3"
 )
 
@@ -37,6 +38,12 @@ func HandlerForward(req *RequestContext) *shttp.Response {
 	defer func() {
 		go rs.artifacts()
 	}()
+
+	slog.Debug(slog.LogOpts{
+		Msg:     "handler forward received message",
+		Level:   slog.DL4,
+		Payload: rs.req.Fields,
+	})
 
 	if rs.req.Host == nil || rs.req.Host.Config == nil {
 		return rs.NotFound()
@@ -65,6 +72,12 @@ func HandlerForward(req *RequestContext) *shttp.Response {
 			return res
 		}
 	}
+
+	slog.Debug(slog.LogOpts{
+		Msg:     "middlewares complete",
+		Level:   slog.DL4,
+		Payload: rs.req.Fields,
+	})
 
 	return rs.Handle()
 }
@@ -171,6 +184,12 @@ func (r *RequestServer) Static() *shttp.Response {
 	notModified := false
 	headers := shttp.HeadersFromMap(r.fileMeta.Headers)
 	modifiedSinceHeader := r.req.Header.Get("If-Modified-Since")
+
+	slog.Debug(slog.LogOpts{
+		Msg:     "static handler initiated",
+		Level:   slog.DL4,
+		Payload: r.req.Fields,
+	})
 
 	// Check If-Modified-Since header -- give this priority
 	if modifiedSinceHeader != "" && r.req.Host.Config.UpdatedAt.Valid {
@@ -309,6 +328,15 @@ func (r *RequestServer) Dynamic() *shttp.Response {
 }
 
 func (r *RequestServer) Error(requestErr error) *shttp.Response {
+	fields := r.req.Fields
+	fields = append(fields, zap.String("error", requestErr.Error()))
+
+	slog.Debug(slog.LogOpts{
+		Msg:     "request error",
+		Level:   slog.DL4,
+		Payload: fields,
+	})
+
 	cnf := r.req.Host.Config
 	r.res = &shttp.Response{
 		Status: http.StatusInternalServerError,

@@ -91,7 +91,7 @@ func InternalHandlers(opts InternalHandlerOpts) func(h http.Handler) http.Handle
 
 			slog.Debug(slog.LogOpts{
 				Msg:   "incoming request",
-				Level: slog.DL3,
+				Level: slog.DL4,
 				Payload: []zap.Field{
 					zap.String("method", r.Method),
 					zap.String("path", r.URL.Path),

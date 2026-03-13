@@ -98,6 +98,7 @@ func SetConfig(conf *Config) {
 const DL1 = 1 // Debug level 1 is used for general debug messages.
 const DL2 = 2 // Debug level 2 is used for more detailed debug messages, such as function calls and variable values.
 const DL3 = 3 // Debug level 3 is used for noisy messages, such as request and response logging.
+const DL4 = 4 // Debug level 4 is used for extremely noisy messages, such as logging every line of code execution (not recommended for regular use).
 
 type LogOpts struct {
 	Msg     string

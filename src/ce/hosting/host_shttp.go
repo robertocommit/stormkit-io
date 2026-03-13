@@ -9,6 +9,7 @@ import (
 	"sync"
 
 	"github.com/caddyserver/certmagic"
+	"github.com/google/uuid"
 	"github.com/stormkit-io/stormkit-io/src/ce/api/admin"
 	"github.com/stormkit-io/stormkit-io/src/ce/api/app/appconf"
 	"github.com/stormkit-io/stormkit-io/src/lib/config"
@@ -33,6 +34,10 @@ type RequestContext struct {
 	// Debugging will post serialized information on the request/response
 	// to Cloudwatch.
 	Debug bool
+
+	Fields []zap.Field
+
+	RequestID string
 }
 
 var cachedCertMagicServer *certmagic.Config
@@ -158,10 +163,19 @@ func WithHost(handler func(*RequestContext) *shttp.Response) shttp.RequestFunc {
 			return shttp.NotFound()
 		}
 
+		requestID := uuid.New().String()
+
+		fields := []zap.Field{
+			zap.String("host", host.Name),
+			zap.String("request-id", requestID),
+		}
+
 		return handler(&RequestContext{
 			Host:           host,
 			RequestContext: req,
 			OriginalPath:   fmt.Sprintf("/%s", strings.TrimLeft(req.URL().Path, "/")),
+			Fields:         fields,
+			RequestID:      requestID,
 		})
 	}
 }
