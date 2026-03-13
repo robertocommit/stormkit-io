@@ -12,6 +12,7 @@ import (
 	"github.com/stormkit-io/stormkit-io/src/lib/shttp"
 	"github.com/stormkit-io/stormkit-io/src/lib/slog"
 	"github.com/stormkit-io/stormkit-io/src/lib/utils"
+	"go.uber.org/zap"
 )
 
 // VersionCookieName represents the name of the cookie that
@@ -118,6 +119,14 @@ func FetchAppConf(hostName string) ([]*appconf.Config, error) {
 // RequestConfig requests the config from api and assigns it to the
 // .Config field. It also chooses the right version if there are multiple version.
 func (h *Host) RequestConfig() error {
+	slog.Debug(slog.LogOpts{
+		Msg:   "requesting config for host",
+		Level: slog.DL4,
+		Payload: []zap.Field{
+			zap.String("host", h.Name),
+		},
+	})
+
 	confs, err := FetchAppConf(h.Name)
 
 	if err != nil {
