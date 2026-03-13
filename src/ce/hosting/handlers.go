@@ -89,20 +89,6 @@ func InternalHandlers(opts InternalHandlerOpts) func(h http.Handler) http.Handle
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			handler := getHandlerFromHost(r.Host, opts)
 
-			slog.Debug(slog.LogOpts{
-				Msg:   "incoming request",
-				Level: slog.DL4,
-				Payload: []zap.Field{
-					zap.String("method", r.Method),
-					zap.String("path", r.URL.Path),
-					zap.String("query", r.URL.RawQuery),
-					zap.String("host", r.Host),
-					zap.String("remote_addr", r.RemoteAddr),
-					zap.String("user_agent", r.Header.Get("User-Agent")),
-					zap.String("origin", r.Header.Get("Origin")),
-				},
-			})
-
 			if handler != nil {
 				handler.ServeHTTP(w, r)
 				return
