@@ -176,6 +176,15 @@ func WithHost(handler func(*RequestContext) *shttp.Response) shttp.RequestFunc {
 
 		host := hostFromContext(req)
 
+		slog.Debug(slog.LogOpts{
+			Msg:   "host fetched",
+			Level: slog.DL4,
+			Payload: []zap.Field{
+				zap.Bool("has_host", host == nil),
+				zap.String("request_id", requestID),
+			},
+		})
+
 		if host == nil {
 			return shttp.NotFound()
 		}
