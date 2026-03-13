@@ -210,7 +210,7 @@ func hostFromContext(req *shttp.RequestContext) *Host {
 		Request: req,
 	}
 
-	domain := req.HostName()
+	domain := utils.GetString(req.HostName(), req.Host)
 
 	host.IsStormkitSubdomain = appconf.IsStormkitDev(domain)
 	host.Name = domain
