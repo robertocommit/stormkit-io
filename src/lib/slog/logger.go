@@ -13,15 +13,38 @@ import (
 )
 
 var (
-	config *Config
-	logger *zap.Logger
-	mux    sync.Mutex
+	config     *Config
+	logger     *zap.Logger
+	mux        sync.Mutex
+	debugLevel int
 )
 
 // Config allows slog to be configured.
 type Config struct {
 	Disabled bool
 	Colorful bool
+}
+
+func init() {
+	d := strings.ToLower(os.Getenv("DEBUG"))
+
+	if d == "true" {
+		debugLevel = 9
+		return
+	}
+
+	debugLevel, _ = strconv.Atoi(d)
+
+	if debugLevel > 0 {
+		Debug(LogOpts{
+			Msg: "debug mode enabled",
+			Payload: []zap.Field{
+				zap.Int("level", debugLevel),
+			},
+		})
+	} else {
+		Info("debug mode is disabled")
+	}
 }
 
 // getConfig is a helper function to return the current config.
@@ -109,27 +132,20 @@ type LogOpts struct {
 
 // Debug logs debug level stuff.
 func Debug(opts LogOpts) {
+	// Debugging is disabled
+	if debugLevel == 0 {
+		return
+	}
+
+	// Debugging is enabled, but the level is not sufficient
+	if debugLevel > 0 && opts.Level > debugLevel {
+		return
+	}
+
 	msg := opts.Msg
-	level := opts.Level
 
 	if len(opts.MsgArgs) > 0 {
 		msg = fmt.Sprintf(msg, opts.MsgArgs...)
-	}
-
-	debug := os.Getenv("DEBUG")
-
-	// Debugging is disabled
-	if debug == "" {
-		return
-	}
-
-	debugLevel, _ := strconv.Atoi(debug)
-
-	// Debugging is enabled, but the level is not sufficient
-	if debugLevel > 0 && level > debugLevel {
-		return
-	} else if debugLevel == 0 && debug != "TRUE" {
-		return
 	}
 
 	getLogger().Debug(msg, opts.Payload...)

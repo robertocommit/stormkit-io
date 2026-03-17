@@ -5,6 +5,8 @@ import (
 
 	"github.com/stormkit-io/stormkit-io/src/ce/api/app/redirects"
 	"github.com/stormkit-io/stormkit-io/src/lib/shttp"
+	"github.com/stormkit-io/stormkit-io/src/lib/slog"
+	"go.uber.org/zap"
 )
 
 func WithRedirect(req *RequestContext) (*shttp.Response, error) {
@@ -13,6 +15,20 @@ func WithRedirect(req *RequestContext) (*shttp.Response, error) {
 	if conf == nil || len(conf.Redirects) == 0 {
 		return nil, nil
 	}
+
+	fields := []zap.Field{
+		zap.String("host", req.Host.Name),
+		zap.String("request_id", req.RequestID),
+		zap.String("api_location", req.Host.Config.APILocation),
+		zap.String("api_path_prefix", req.Host.Config.APIPathPrefix),
+		zap.String("url", req.URL().String()),
+	}
+
+	slog.Debug(slog.LogOpts{
+		Msg:     "running redirect middleware",
+		Level:   slog.DL4,
+		Payload: fields,
+	})
 
 	url := req.URL()
 	match := redirects.Match(redirects.MatchArgs{
