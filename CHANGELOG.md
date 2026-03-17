@@ -1,5 +1,35 @@
 # Changelog
 
+## v2026.03.10.1...v2026.03.17.1
+
+[compare changes](https://github.com/stormkit-io/stormkit-io/compare/v2026.03.10.1...v2026.03.17.1)
+
+### 🚀 Enhancements
+
+- **public/v1:** Add WithAPIKey middleware and GET /v1/apps/{appId} endpoint ([e4cf28e](https://github.com/stormkit-io/stormkit-io/commit/e4cf28e))
+
+### 🩹 Fixes
+
+- Host name ([bc9e065](https://github.com/stormkit-io/stormkit-io/commit/bc9e065))
+
+### 📖 Documentation
+
+- V2026.03.10.1 ([42a43e6](https://github.com/stormkit-io/stormkit-io/commit/42a43e6))
+- V2026.03.10.1 ([b054380](https://github.com/stormkit-io/stormkit-io/commit/b054380))
+- Announce arm support ([ca5b5a5](https://github.com/stormkit-io/stormkit-io/commit/ca5b5a5))
+
+### 🏡 Chore
+
+- Improve logging ([2b13fbb](https://github.com/stormkit-io/stormkit-io/commit/2b13fbb))
+- Additional logs ([afb990c](https://github.com/stormkit-io/stormkit-io/commit/afb990c))
+- Additional logs ([20e0a98](https://github.com/stormkit-io/stormkit-io/commit/20e0a98))
+- Additional logs ([e3facba](https://github.com/stormkit-io/stormkit-io/commit/e3facba))
+- Improve debugging ([3a489d2](https://github.com/stormkit-io/stormkit-io/commit/3a489d2))
+
+### ❤️ Contributors
+
+- Savas Vedova <savas@stormkit.io>
+
 ## v1.26.16...v2026.03.10.1
 
 [compare changes](https://github.com/stormkit-io/stormkit-io/compare/v1.26.16...v2026.03.10.1)
