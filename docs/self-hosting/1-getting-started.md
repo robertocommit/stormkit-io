@@ -29,6 +29,8 @@ curl -sSL https://www.stormkit.io/install.sh | sh
 - `Debian (11, 12)`
 - `Rocky Linux (10)`
 
+Stormkit ships multi-platform Docker images and supports both `amd64` and `arm64` architectures. No extra configuration is needed — Docker automatically pulls the right image for your machine.
+
 If you find an issue with the script, please [submit it here](https://github.com/stormkit-io/www-stormkit-io/issues).
 
 ## Environment variables

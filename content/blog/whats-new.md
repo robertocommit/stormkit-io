@@ -5,6 +5,10 @@ description: Discover the latest changes and improvements to Stormkit. Stay up-t
 
 Follow the latest developments on Stormkit.
 
+## March 17th, 2026
+
+Stormkit now provides **ARM-compatible Docker images** for self-hosted customers. No additional configuration is required — Docker automatically selects the right image for your platform, making Stormkit fully compatible with ARM-based machines such as AWS Graviton, Apple Silicon (M-series), and other ARM64 hosts.
+
 ## March 5th, 2026
 
 **API Key security hardening**: API keys are now stored as SHA-256 hashes in the database instead of plain text. The raw token is shown **only once** immediately after creation — make sure to copy it before dismissing the dialog. Existing keys continue to work without any migration required.
