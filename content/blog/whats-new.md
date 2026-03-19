@@ -5,6 +5,10 @@ description: Discover the latest changes and improvements to Stormkit. Stay up-t
 
 Follow the latest developments on Stormkit.
 
+## March 19th, 2026
+
+New public API endpoint to [upload files to Volumes](/docs/api/volumes) programmatically. Use an environment-level API key to upload one or more files to your environment's configured file storage (filesystem or S3-compatible). Supports custom filenames and directory structure via the `Content-Disposition` header, per-file error reporting, and configurable upload size limits.
+
 ## March 18th, 2026
 
 New public API endpoint to [trigger deployments](/docs/api/deployments) programmatically. Use at least an environment-level API key to kick off a build from any CI/CD pipeline, script, or agent — with optional branch and publish overrides. This is the first step towards making Stormkit fully agent-friendly.
