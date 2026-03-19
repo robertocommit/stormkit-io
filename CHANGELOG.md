@@ -1,5 +1,26 @@
 # Changelog
 
+## v2026.03.17.1...v2026.03.19.1
+
+[compare changes](https://github.com/stormkit-io/stormkit-io/compare/v2026.03.17.1...v2026.03.19.1)
+
+### 🚀 Enhancements
+
+- Include env and app ids from form values ([01f1a41](https://github.com/stormkit-io/stormkit-io/commit/01f1a41))
+- Major improvements to public api ([d738eda](https://github.com/stormkit-io/stormkit-io/commit/d738eda))
+
+### 🩹 Fixes
+
+- Debug payload ([04950f3](https://github.com/stormkit-io/stormkit-io/commit/04950f3))
+
+### 📖 Documentation
+
+- V2026.03.17.1 ([76079ea](https://github.com/stormkit-io/stormkit-io/commit/76079ea))
+
+### ❤️ Contributors
+
+- Savas Vedova <savas@stormkit.io>
+
 ## v2026.03.10.1...v2026.03.17.1
 
 [compare changes](https://github.com/stormkit-io/stormkit-io/compare/v2026.03.10.1...v2026.03.17.1)
