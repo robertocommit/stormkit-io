@@ -370,6 +370,7 @@ Makes a deployment live for the environment associated with the API key.
 # Publish a deployment at 100%
 curl -X POST \
      -H 'Authorization: <api_key>' \
+     -H 'Content-Type: application/json' \
      'https://api.stormkit.io/v1/deployments/8241/publish'
 ```
 
@@ -456,6 +457,7 @@ Restarts a failed deployment using the same configuration and branch. Only deplo
 ```bash
 curl -X POST \
      -H 'Authorization: <api_key>' \
+     -H 'Content-Type: application/json' \
      'https://api.stormkit.io/v1/deployments/8241/restart'
 ```
 
