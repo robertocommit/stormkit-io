@@ -69,6 +69,7 @@ export default function AdminLayout({ children }: Props) {
             />
             <Box sx={{ mb: 4 }}>
               <MenuLink
+                inline
                 item={{
                   path: "/admin/system",
                   text: "System",
@@ -84,6 +85,7 @@ export default function AdminLayout({ children }: Props) {
                 }}
               /> */}
               <MenuLink
+                inline
                 item={{
                   path: "/admin/subscription",
                   text: "Subscription",
@@ -91,6 +93,7 @@ export default function AdminLayout({ children }: Props) {
                 }}
               />
               <MenuLink
+                inline
                 item={{
                   path: "/admin/jobs",
                   text: "Jobs",
@@ -98,6 +101,7 @@ export default function AdminLayout({ children }: Props) {
                 }}
               />
               <MenuLink
+                inline
                 item={{
                   path: "/admin/proxies",
                   text: "Proxies",
@@ -105,6 +109,7 @@ export default function AdminLayout({ children }: Props) {
                 }}
               />
               <MenuLink
+                inline
                 item={{
                   path: "/admin/git",
                   text: "Git",
@@ -112,6 +117,7 @@ export default function AdminLayout({ children }: Props) {
                 }}
               />
               <MenuLink
+                inline
                 item={{
                   path: "/admin/auth",
                   text: "Authentication",
@@ -120,6 +126,7 @@ export default function AdminLayout({ children }: Props) {
               />
               {isCloud && (
                 <MenuLink
+                  inline
                   item={{
                     path: "/admin/cloud/apps",
                     text: "Apps",
