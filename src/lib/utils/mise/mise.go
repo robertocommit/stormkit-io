@@ -266,7 +266,8 @@ func (m *Mise) BinPaths(ctx context.Context) (map[string]string, error) {
 		toolPath, err := exec.LookPath(toolName)
 
 		if err != nil {
-			return nil, fmt.Errorf("error looking up path for tool %s: %v", toolName, err)
+			slog.Errorf("error looking up path for tool %s: %v", toolName, err)
+			continue
 		}
 
 		vars[fmt.Sprintf("MISE_%s_PATH", strings.ToUpper(toolName))] = toolPath
