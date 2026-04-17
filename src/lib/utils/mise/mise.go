@@ -389,8 +389,9 @@ func (m *Mise) SelfUpdate(ctx context.Context) error {
 // Prune removes unused mise installations and cleans up the environment.
 func (m *Mise) Prune(ctx context.Context) error {
 	cmd := sys.Command(ctx, sys.CommandOpts{
-		String: "mise ls --global | xargs -n1 -r mise unuse --global --yes",
-		Dir:    os.Getenv("HOME"),
+		Name: "sh",
+		Args: []string{"-c", "mise ls --global | xargs -n1 -r mise unuse --global --yes"},
+		Dir:  os.Getenv("HOME"),
 	})
 
 	return cmd.Run()
