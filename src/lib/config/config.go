@@ -97,6 +97,7 @@ type HttpTimeoutsConfig struct {
 	ReadTimeout  time.Duration
 	WriteTimeout time.Duration
 	IdleTimeout  time.Duration
+	ProxyTimeout time.Duration
 }
 
 type DbConfigTimeouts struct {
@@ -270,6 +271,7 @@ func New() *Config {
 			ReadTimeout:  getDuration(os.Getenv("STORMKIT_HTTP_READ_TIMEOUT"), 30*time.Second),
 			WriteTimeout: getDuration(os.Getenv("STORMKIT_HTTP_WRITE_TIMEOUT"), 30*time.Second),
 			IdleTimeout:  getDuration(os.Getenv("STORMKIT_HTTP_IDLE_TIMEOUT"), 60*time.Second),
+			ProxyTimeout: getDuration(os.Getenv("STORMKIT_HTTP_PROXY_TIMEOUT"), 30*time.Second),
 		},
 
 		DbConfigTimeouts: &DbConfigTimeouts{

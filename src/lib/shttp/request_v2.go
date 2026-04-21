@@ -164,6 +164,7 @@ func (r *RequestV2) Do() (*HTTPResponse, error) {
 type ProxyArgs struct {
 	Target          string
 	FollowRedirects *bool
+	Timeout         time.Duration
 }
 
 func Proxy(req *RequestContext, args ProxyArgs) *Response {
@@ -189,6 +190,10 @@ func Proxy(req *RequestContext, args ProxyArgs) *Response {
 	}
 
 	client := NewRequestV2(req.Method, args.Target).Headers(headers)
+
+	if args.Timeout > 0 {
+		client.WithTimeout(args.Timeout)
+	}
 
 	if args.FollowRedirects != nil && !*args.FollowRedirects {
 		client.FollowRedirects(false)

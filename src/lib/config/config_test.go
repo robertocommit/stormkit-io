@@ -28,6 +28,7 @@ func (s *PackageSuite) AfterTest(_, _ string) {
 	os.Unsetenv("STORMKIT_HTTP_READ_TIMEOUT")
 	os.Unsetenv("STORMKIT_HTTP_WRITE_TIMEOUT")
 	os.Unsetenv("STORMKIT_HTTP_IDLE_TIMEOUT")
+	os.Unsetenv("STORMKIT_HTTP_PROXY_TIMEOUT")
 }
 
 func (s *PackageSuite) Test_HTTPTimeouts_Defaults() {
@@ -35,17 +36,20 @@ func (s *PackageSuite) Test_HTTPTimeouts_Defaults() {
 	s.Equal(30*time.Second, c.HTTPTimeouts.ReadTimeout)
 	s.Equal(30*time.Second, c.HTTPTimeouts.WriteTimeout)
 	s.Equal(60*time.Second, c.HTTPTimeouts.IdleTimeout)
+	s.Equal(30*time.Second, c.HTTPTimeouts.ProxyTimeout)
 }
 
 func (s *PackageSuite) Test_HTTPTimeouts_ValidValues() {
 	os.Setenv("STORMKIT_HTTP_READ_TIMEOUT", "5s")
 	os.Setenv("STORMKIT_HTTP_WRITE_TIMEOUT", "10s")
 	os.Setenv("STORMKIT_HTTP_IDLE_TIMEOUT", "2m")
+	os.Setenv("STORMKIT_HTTP_PROXY_TIMEOUT", "5m")
 
 	c := config.New()
 	s.Equal(5*time.Second, c.HTTPTimeouts.ReadTimeout)
 	s.Equal(10*time.Second, c.HTTPTimeouts.WriteTimeout)
 	s.Equal(2*time.Minute, c.HTTPTimeouts.IdleTimeout)
+	s.Equal(5*time.Minute, c.HTTPTimeouts.ProxyTimeout)
 }
 
 func (s *PackageSuite) Test_HTTPTimeouts_InvalidValue_FallsBackToDefault() {

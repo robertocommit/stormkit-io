@@ -16,6 +16,7 @@ import (
 	"time"
 
 	"github.com/goccy/go-yaml"
+	"github.com/stormkit-io/stormkit-io/src/lib/config"
 	"github.com/stormkit-io/stormkit-io/src/lib/html"
 	"github.com/stormkit-io/stormkit-io/src/lib/shttp"
 	"github.com/stormkit-io/stormkit-io/src/lib/shutdown"
@@ -687,6 +688,7 @@ func (pm *ProcessManager) request(args InvokeArgs, service *Service) (*InvokeRes
 	}, shttp.ProxyArgs{
 		Target:          target.String(),
 		FollowRedirects: utils.Ptr(false),
+		Timeout:         config.Get().HTTPTimeouts.ProxyTimeout,
 	})
 
 	if res.Error != nil {
