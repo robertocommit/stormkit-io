@@ -50,7 +50,7 @@ func main() {
 
 	if conn := database.Connection(); conn != nil {
 		migrations.Up(conn, database.Config)
-		go admin.InstallDependencies(context.Background())
+		admin.InstallDependencies(context.Background())
 	}
 
 	// Register redis listeners
