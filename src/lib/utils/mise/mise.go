@@ -265,8 +265,9 @@ func (m *Mise) BinPaths(ctx context.Context) (map[string]string, error) {
 
 		toolPath, err := exec.LookPath(toolName)
 
+		// Either the tool doesn't exist or it does not have a bin path
+		// (e.g. it's a meta package like "nix:*" that doesn't have a specific version installed), in which case we skip it
 		if err != nil {
-			slog.Errorf("error looking up path for tool %s: %v", toolName, err)
 			continue
 		}
 
