@@ -2,12 +2,15 @@ package hosting
 
 import (
 	"context"
+	"crypto/tls"
 	"fmt"
 	"io"
 	"log"
+	"net"
 	"net/http"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/caddyserver/certmagic"
 	"github.com/libdns/route53"
@@ -113,7 +116,81 @@ func Magic(opts MagicOpts) {
 
 	slog.Infof("external server listening on :%d (https) and :%d (http)", certmagic.HTTPSPort, certmagic.HTTPPort)
 
-	if err := certmagic.HTTPS(nil, opts.Handler); err != nil {
-		fmt.Printf("encountered following error while launching https server: %s", err.Error())
+	if err := httpsServe(certmagic.NewDefault(), opts.Handler); err != nil {
+		slog.Errorf("encountered following error while launching https server: %s", err.Error())
 	}
+}
+
+// httpsServe is a drop-in replacement for certmagic.HTTPS that removes the
+// hardcoded ReadTimeout / WriteTimeout from the HTTPS server. Timeouts for
+// normal requests are enforced at the application layer via WithTimeout; the
+// server-level timeout is left at zero so that large file uploads are never
+// cut short by the underlying http.Server.
+func httpsServe(cfg *certmagic.Config, handler http.Handler) error {
+	ctx := context.Background()
+
+	httpLn, err := net.Listen("tcp", fmt.Sprintf(":%d", certmagic.HTTPPort))
+
+	if err != nil {
+		return err
+	}
+
+	tlsConfig := cfg.TLSConfig()
+	tlsConfig.NextProtos = append([]string{"h2", "http/1.1"}, tlsConfig.NextProtos...)
+
+	httpsLn, err := tls.Listen("tcp", fmt.Sprintf(":%d", certmagic.HTTPSPort), tlsConfig)
+
+	if err != nil {
+		httpLn.Close()
+		return err
+	}
+
+	// Ensure both listeners are closed when the HTTPS server stops, which
+	// also causes the HTTP goroutine below to exit cleanly.
+	defer func() {
+		httpLn.Close()
+		httpsLn.Close()
+	}()
+
+	// The HTTP server only handles ACME challenges and redirects; tight
+	// timeouts are fine here.
+	httpServer := &http.Server{
+		ReadHeaderTimeout: 5 * time.Second,
+		ReadTimeout:       5 * time.Second,
+		WriteTimeout:      5 * time.Second,
+		IdleTimeout:       5 * time.Second,
+		BaseContext:       func(net.Listener) context.Context { return ctx },
+	}
+
+	if len(cfg.Issuers) > 0 {
+		if am, ok := cfg.Issuers[0].(*certmagic.ACMEIssuer); ok {
+			httpServer.Handler = am.HTTPChallengeHandler(http.HandlerFunc(httpRedirectHandler))
+		}
+	}
+
+	// No ReadTimeout / WriteTimeout — the application-level WithTimeout
+	// middleware handles ordinary request timeouts, and large uploads must
+	// not be interrupted by a server-level deadline.
+	httpsServer := &http.Server{
+		ReadHeaderTimeout: 10 * time.Second,
+		IdleTimeout:       5 * time.Minute,
+		Handler:           handler,
+		BaseContext:       func(net.Listener) context.Context { return ctx },
+	}
+
+	go httpServer.Serve(httpLn)
+
+	return httpsServer.Serve(httpsLn)
+}
+
+// httpRedirectHandler redirects plain HTTP requests to HTTPS.
+func httpRedirectHandler(w http.ResponseWriter, r *http.Request) {
+	host := r.Host
+
+	if h, _, err := net.SplitHostPort(host); err == nil {
+		host = h
+	}
+
+	w.Header().Set("Connection", "close")
+	http.Redirect(w, r, "https://"+host+r.URL.RequestURI(), http.StatusMovedPermanently)
 }
