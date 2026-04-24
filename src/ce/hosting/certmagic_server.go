@@ -173,7 +173,7 @@ func httpsServe(cfg *certmagic.Config, handler http.Handler) error {
 	// not be interrupted by a server-level deadline.
 	httpsServer := &http.Server{
 		ReadHeaderTimeout: 10 * time.Second,
-		IdleTimeout:       5 * time.Minute,
+		IdleTimeout:       config.Get().HTTPTimeouts.IdleTimeout,
 		Handler:           handler,
 		BaseContext:       func(net.Listener) context.Context { return ctx },
 	}
