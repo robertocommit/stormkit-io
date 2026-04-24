@@ -13,6 +13,16 @@ The hosting queue is a Redis list used to buffer incoming analytics, logs, and u
 | ----------------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | `STORMKIT_HOSTING_QUEUE_BATCH_SIZE` | `1000`  | Number of items consumed from the hosting queue per worker run. Increase this value if the queue grows faster than it is being drained. |
 
+## Reverse Proxy / Load Balancer
+
+By default Stormkit assumes it is the public edge: `X-Forwarded-For` is always overwritten with the real socket address, and `X-Real-IP` is overwritten if the client supplied one. This prevents clients from spoofing their IP for rate-limiting or access-control purposes.
+
+If Stormkit sits behind a trusted reverse proxy or load balancer that already sets these headers correctly, enable the following variable so that they are passed through unchanged:
+
+| Variable                          | Default | Description                                                                                                                                                      |
+| --------------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `STORMKIT_TRUST_PROXY_HEADERS`    | `false` | Set to `true` when Stormkit runs behind a trusted upstream proxy. `X-Forwarded-For` and `X-Real-IP` are passed through unchanged. When `false` (default), `X-Forwarded-For` is always overwritten with the real socket address and `X-Real-IP` is overwritten if present. |
+
 ## HTTP Timeouts
 
 The following environment variables control the HTTP server timeouts. Values are parsed as Go duration strings; you should include a unit suffix (e.g. `30s`, `1m`, `500ms`). Bare integers without a unit (e.g. `30`) are interpreted as nanoseconds (e.g. `30` → `30ns`), which results in an extremely short timeout and is almost never desired. When unset, the defaults shown below are used.

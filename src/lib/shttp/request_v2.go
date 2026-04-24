@@ -213,17 +213,26 @@ type ProxyArgs struct {
 func Proxy(req *RequestContext, args ProxyArgs) *Response {
 	headers := req.Header.Clone()
 
-	// Make sure X-Forwarded-For headers are set
-	if headers.Get("X-Forwarded-For") == "" && headers.Get("X-Real-IP") == "" {
+	// When Stormkit is the public edge (default), overwrite X-Forwarded-For with
+	// the real socket address and overwrite X-Real-IP if the client supplied one,
+	// so clients cannot spoof their IP for rate-limiting or access-control.
+	// When STORMKIT_TRUST_PROXY_HEADERS=true a trusted upstream proxy (e.g. a
+	// load balancer) has already set these headers correctly; pass them through
+	// unchanged.
+	if !config.Get().TrustProxyHeaders {
 		if remoteAddr := req.RemoteAddr(); remoteAddr != "" {
 			addr, port, err := net.SplitHostPort(remoteAddr)
 
 			if err != nil {
-				slog.Infof("error splitting remote address: %s", remoteAddr)
+				slog.Errorf("error splitting remote address: %s", remoteAddr)
 			}
 
 			if addr != "" {
 				headers.Set("X-Forwarded-For", addr)
+
+				if headers.Get("X-Real-IP") != "" {
+					headers.Set("X-Real-IP", addr)
+				}
 			}
 
 			if port != "" {
