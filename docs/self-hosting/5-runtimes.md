@@ -114,21 +114,47 @@ Stormkit uses [Nix](https://nixos.org/) as a backend for certain runtimes (e.g. 
 
 As of **April 2026**, the official `docker-compose.yaml` mounts a named `nix` volume at `/nix` for both the `workerserver` and `hosting` services. If you set up Stormkit before this date, add the following to your `docker-compose.yaml` to benefit from cached Nix packages:
 
-**1. Declare the volume** at the top-level `volumes` section:
+**1. Declare the volumes** at the top-level `volumes` section:
 
 ```yaml
 volumes:
-  nix:
+  workerserver_nix:
+  hosting_nix:
 ```
 
-**2. Mount it** in both the `workerserver` and `hosting` service definitions:
+**2. Mount them** in the respective service definitions:
 
 ```yaml
-volumes:
-  - nix:/nix
+# workerserver
+- workerserver_nix:/nix
+
+# hosting
+- hosting_nix:/nix
 ```
 
 After updating, run `docker compose up -d` to recreate the containers with the new mount. The Nix store will be populated on first use and reused on subsequent restarts.
+
+<div class="blog-alert">
+
+**Existing installations:** If you see an error like `failed to mkdir .../nix/_data/store/...: file exists` on startup, it means both services raced to seed the same volume simultaneously. Use separate named volumes to avoid this:
+
+```yaml
+volumes:
+  workerserver_nix:
+  hosting_nix:
+```
+
+Then mount them individually:
+
+```yaml
+# workerserver
+- workerserver_nix:/nix
+
+# hosting
+- hosting_nix:/nix
+```
+
+</div>
 
 ## Best Practices
 
