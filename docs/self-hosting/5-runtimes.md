@@ -110,7 +110,7 @@ Stormkit relies on the **[mise](https://mise.jdx.dev/)** open-source tool for ru
 
 ## Persisting the Nix Store
 
-Stormkit uses [Nix](https://nixos.org/) as a backend for certain runtimes (e.g. `nix:ffmpeg`, `nix:playwright`). By default, the Nix store lives at `/nix` inside the container. Without a persistent volume at that path, packages are re-downloaded every time the container restarts.
+Stormkit uses [Nix](https://nixos.org/) as a backend for maintaining system level dependencies. By default, the Nix store lives at `/nix` inside the container. Without a persistent volume at that path, packages are re-downloaded every time the container restarts.
 
 As of **April 2026**, the official `docker-compose.yaml` mounts a named `nix` volume at `/nix` for both the `workerserver` and `hosting` services. If you set up Stormkit before this date, add the following to your `docker-compose.yaml` to benefit from cached Nix packages:
 
@@ -166,3 +166,4 @@ Then mount them individually:
 ## Related Documentation
 
 - [Mise Runtime Manager](https://mise.jdx.dev/)
+- [Nix Package Manager](https://nix.dev/reference/nix-manual.html)
