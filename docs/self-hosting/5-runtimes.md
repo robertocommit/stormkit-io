@@ -16,6 +16,7 @@ You can:
 - Install and manage multiple runtimes (Node.js, Go, npm, Angular CLI, etc.)
 - Specify exact versions or use `latest`
 - Enable or disable automatic runtime installation
+- Use a `flake.nix` file to provide system-level tools via Nix
 - Upgrade the underlying runtime manager (**mise**)
 
 ## Accessing the Runtime Management Page
@@ -73,6 +74,29 @@ The following files are recognized automatically:
 | python  | `.python-version`, `.python-versions` |
 | ruby    | `.ruby-version`, `Gemfile`            |
 
+## Nix Flakes
+
+If your repository contains a `flake.nix` file, Stormkit will automatically run `nix develop` during the **install runtimes** step to bootstrap the Nix development shell. The packages defined in the flake are then available for all subsequent build commands — no additional configuration required.
+
+A typical `flake.nix` that provides `ffmpeg` and `imagemagick` during builds:
+
+```nix
+{
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+  outputs = { self, nixpkgs }: let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in {
+    devShells.${system}.default = pkgs.mkShell {
+      packages = [ pkgs.ffmpeg pkgs.imagemagick ];
+    };
+  };
+}
+```
+
+`flake.nix` and `mise.toml` can coexist — mise handles language runtimes while the flake covers system-level tools.
+
 ## Mise Runtime Manager
 
 Stormkit relies on the **[mise](https://mise.jdx.dev/)** open-source tool for runtime management. **Current version** is displayed in the **Mise** section.
@@ -83,6 +107,28 @@ Stormkit relies on the **[mise](https://mise.jdx.dev/)** open-source tool for ru
 2. Stormkit will fetch and install the newest stable release of `mise`.
 
 > **Note:** Upgrading `mise` does not automatically upgrade installed runtimes. You’ll need to update those manually.
+
+## Persisting the Nix Store
+
+Stormkit uses [Nix](https://nixos.org/) as a backend for certain runtimes (e.g. `nix:ffmpeg`, `nix:playwright`). By default, the Nix store lives at `/nix` inside the container. Without a persistent volume at that path, packages are re-downloaded every time the container restarts.
+
+As of **April 2026**, the official `docker-compose.yaml` mounts a named `nix` volume at `/nix` for both the `workerserver` and `hosting` services. If you set up Stormkit before this date, add the following to your `docker-compose.yaml` to benefit from cached Nix packages:
+
+**1. Declare the volume** at the top-level `volumes` section:
+
+```yaml
+volumes:
+  nix:
+```
+
+**2. Mount it** in both the `workerserver` and `hosting` service definitions:
+
+```yaml
+volumes:
+  - nix:/nix
+```
+
+After updating, run `docker compose up -d` to recreate the containers with the new mount. The Nix store will be populated on first use and reused on subsequent restarts.
 
 ## Best Practices
 
