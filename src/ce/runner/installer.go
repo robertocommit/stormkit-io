@@ -71,6 +71,7 @@ type Installer struct {
 	isYarn             bool
 	isPnpm             bool
 	workDir            string
+	repoDir            string
 	buildCmd           string
 	hasPackageLockFile bool
 	runtime            string // The runtime that is going to be used to build the project
@@ -87,6 +88,7 @@ func NewInstaller(opts RunnerOpts) InstallerInterface {
 
 	p := &Installer{
 		workDir:            opts.WorkDir,
+		repoDir:            opts.Repo.Dir,
 		buildCmd:           opts.Build.BuildCmd,
 		installCmd:         opts.Build.InstallCmd,
 		envVars:            opts.Build.EnvVars,
@@ -139,36 +141,18 @@ func (p Installer) RuntimeVersion(ctx context.Context) error {
 	}).Run()
 }
 
-func (p *Installer) hasFlakeNix() bool {
-	_, err := os.Stat(path.Join(p.workDir, "flake.nix"))
-	return err == nil
-}
-
-// installFlake runs the flake's dev shell and applies its PATH to the current process
-// so that packages defined in flake.nix are available to subsequent build commands.
-func (p *Installer) installFlake(ctx context.Context) error {
-	cmd := sys.Command(ctx, sys.CommandOpts{
+// installFlake pre-builds the nix dev shell so its packages are in the store
+// before the build command runs. The build command itself is wrapped by the
+// builder using `nix develop --command` to get the full shell environment.
+func (p *Installer) installFlake(ctx context.Context, flakeDir string) error {
+	return sys.Command(ctx, sys.CommandOpts{
 		Name:   "sh",
-		Args:   []string{"-c", `nix --extra-experimental-features "nix-command flakes" develop --command env`},
-		Dir:    p.workDir,
+		Args:   []string{"-c", `nix --extra-experimental-features "nix-command flakes" develop --command true`},
+		Dir:    flakeDir,
 		Env:    PrepareEnvVars(p.envVars),
+		Stdout: p.reporter.File(),
 		Stderr: p.reporter.File(),
-	})
-
-	output, err := cmd.Output()
-
-	if err != nil {
-		return err
-	}
-
-	for line := range strings.SplitSeq(string(output), "\n") {
-		if v, ok := strings.CutPrefix(line, "PATH="); ok {
-			os.Setenv("PATH", v)
-			break
-		}
-	}
-
-	return nil
+	}).Run()
 }
 
 // InstallRuntimeDependencies installs runtime dependencies using mise and flake.nix (if present).
@@ -192,8 +176,8 @@ func (p *Installer) InstallRuntimeDependencies(ctx context.Context) ([]string, e
 		return nil, err
 	}
 
-	if p.hasFlakeNix() {
-		if err := p.installFlake(ctx); err != nil {
+	if flakeDir := nixFlakeDir(p.workDir, p.repoDir); flakeDir != "" {
+		if err := p.installFlake(ctx, flakeDir); err != nil {
 			return nil, err
 		}
 	}

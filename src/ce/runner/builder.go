@@ -10,6 +10,19 @@ import (
 	"github.com/stormkit-io/stormkit-io/src/lib/utils/sys"
 )
 
+// nixFlakeDir returns the directory that contains flake.nix, or an empty string
+// if no flake.nix is found. It checks workDir first (covers SK_CWD subdirectory
+// builds), then repoDir (repo root).
+func nixFlakeDir(workDir, repoDir string) string {
+	for _, dir := range []string{workDir, repoDir} {
+		if dir != "" && file.Exists(filepath.Join(dir, "flake.nix")) {
+			return dir
+		}
+	}
+
+	return ""
+}
+
 type BuilderInterface interface {
 	ExecCommands(context.Context) error
 	BuildApiIfNecessary(context.Context) (bool, error)
@@ -67,16 +80,23 @@ func (bm Builder) ExecCommands(ctx context.Context) error {
 
 	bm.reporter.AddStep(bm.cmd)
 
-	cmd := sys.Command(ctx, sys.CommandOpts{
-		Name:   "sh",
-		Args:   []string{"-c", bm.cmd},
+	opts := sys.CommandOpts{
 		Env:    PrepareEnvVars(bm.envVars),
 		Dir:    bm.workDir,
 		Stdout: bm.reporter.File(),
 		Stderr: bm.reporter.File(),
-	})
+	}
 
-	return cmd.Run()
+	if flakeDir := nixFlakeDir(bm.workDir, bm.repoDir); flakeDir != "" {
+		opts.Name = "nix"
+		opts.Dir = flakeDir
+		opts.Args = []string{"--extra-experimental-features", "nix-command flakes", "develop", "--command", "sh", "-c", bm.cmd}
+	} else {
+		opts.Name = "sh"
+		opts.Args = []string{"-c", bm.cmd}
+	}
+
+	return sys.Command(ctx, opts).Run()
 }
 
 func (bm Builder) BuildApiIfNecessary(ctx context.Context) (bool, error) {
