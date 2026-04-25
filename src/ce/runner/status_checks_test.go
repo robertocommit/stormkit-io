@@ -68,6 +68,34 @@ func (s *StatusChecksSuite) Test_Run() {
 	s.NoError(sc.Run(ctx, "printenv"))
 }
 
+func (s *StatusChecksSuite) Test_Run_WithFlake() {
+	s.config.Repo.Dir = s.config.WorkDir
+	s.NoError(os.MkdirAll(s.config.WorkDir, 0776))
+	s.NoError(os.WriteFile(path.Join(s.config.WorkDir, "flake.nix"), []byte("{}"), 0664))
+
+	sc := runner.NewStatusChecks(s.config)
+	ctx := context.Background()
+
+	s.mockCmd.On("SetOpts", sys.CommandOpts{
+		Name: "nix",
+		Args: []string{
+			"--extra-experimental-features", "nix-command flakes",
+			"develop",
+			"--command",
+			"env", "PATH=" + os.Getenv("PATH"),
+			"sh", "-c", "printenv",
+		},
+		Env:    runner.PrepareEnvVars(s.config.Build.EnvVars),
+		Dir:    s.config.WorkDir,
+		Stdout: s.config.Reporter.File(),
+		Stderr: s.config.Reporter.File(),
+	}).Return(s.mockCmd)
+
+	s.mockCmd.On("Run").Return(nil)
+
+	s.NoError(sc.Run(ctx, "printenv"))
+}
+
 func TestStatusChecksSuite(t *testing.T) {
 	suite.Run(t, &StatusChecksSuite{})
 }
