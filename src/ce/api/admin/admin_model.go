@@ -476,9 +476,9 @@ func defaultSystemConfig() *SystemConfig {
 	// that the user wants to use the old method of installing runtimes.
 	if nodeVersion := os.Getenv("NODE_VERSION"); nodeVersion != "" {
 		cfg.Runtimes = append(cfg.Runtimes, fmt.Sprintf("node@%s", nodeVersion))
-		cfg.Runtimes = append(cfg.Runtimes, "yarn@1.22")
-		cfg.Runtimes = append(cfg.Runtimes, "pnpm@latest")
 		cfg.Runtimes = append(cfg.Runtimes, "npm@latest")
+		cfg.Runtimes = append(cfg.Runtimes, "npm:yarn@1.22")
+		cfg.Runtimes = append(cfg.Runtimes, "npm:pnpm@latest")
 	}
 
 	return cfg
