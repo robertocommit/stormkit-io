@@ -36,5 +36,5 @@ func SendEmail(p SendEmailParams) error {
 	auth := smtp.PlainAuth("", cfg.Username, cfg.Password, cfg.Host)
 	port := utils.GetString(cfg.Port, "587")
 
-	return SendMailFunc(cfg.Host+":"+port, auth, cfg.Username, []string{p.To}, msg)
+	return SendMailFunc(cfg.Host+":"+port, auth, from, []string{p.To}, msg)
 }
