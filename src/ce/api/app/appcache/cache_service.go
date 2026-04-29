@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"strings"
 
 	"github.com/stormkit-io/stormkit-io/src/ce/api/app"
 	"github.com/stormkit-io/stormkit-io/src/ce/api/app/buildconf"
@@ -87,7 +88,7 @@ func (CacheService) Reset(envID types.ID, keys ...string) error {
 			Level: slog.DL2,
 		})
 
-		if err := service.Broadcast(rediscache.EventInvalidateHostingCache, key); err != nil {
+		if err := service.Broadcast(rediscache.EventInvalidateHostingCache, strings.ToLower(key)); err != nil {
 			slog.Errorf("error while broadcasting cache invalidation for key %s: %v", key, err)
 		}
 	}
