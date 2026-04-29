@@ -205,7 +205,11 @@ func hasNixFlake(workDir string) bool {
 // so that all nix-provided libraries are available at runtime.
 func (pm *ProcessManager) BuildServerCommand(command, workDir string) string {
 	if hasNixFlake(workDir) {
-		return `nix --extra-experimental-features "nix-command flakes" develop --command sh -c ` + command
+		// Quote the command so it is passed as a single argument to sh -c.
+		// Without quoting, shlex splits multi-word commands (e.g. "node build")
+		// into separate nix --command args, causing sh to run only the first word.
+		quoted := "'" + strings.ReplaceAll(command, "'", `'\''`) + "'"
+		return `nix --extra-experimental-features "nix-command flakes" develop --command sh -c ` + quoted
 	}
 
 	return command

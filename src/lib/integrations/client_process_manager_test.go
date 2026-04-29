@@ -406,7 +406,7 @@ func (s *ProcessManagerSuite) Test_BuildServerCommand_WithFlake() {
 	defer os.Remove(flakePath)
 
 	cmd := s.pm.BuildServerCommand("node index.js", s.tmpdir)
-	s.Equal(`nix --extra-experimental-features "nix-command flakes" develop --command sh -c node index.js`, cmd)
+	s.Equal(`nix --extra-experimental-features "nix-command flakes" develop --command sh -c 'node index.js'`, cmd)
 }
 
 func TestProcessManager(t *testing.T) {
