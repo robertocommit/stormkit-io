@@ -80,7 +80,7 @@ If your repository contains a `flake.nix` file, Stormkit will automatically run 
 
 A typical `flake.nix` that provides `ffmpeg` and `imagemagick` during builds:
 
-```nix
+```javascript
 {
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
